@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1267
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumWebAPI", "QuantumWebAPI.csproj", "{7A6859ED-1D53-4422-B6EF-6A3598AB19D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuntumDB", "..\QuntumDB\QuntumDB.csproj", "{C5ACED47-AE75-49E4-84F5-0D714964C372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7A6859ED-1D53-4422-B6EF-6A3598AB19D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A6859ED-1D53-4422-B6EF-6A3598AB19D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A6859ED-1D53-4422-B6EF-6A3598AB19D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5ACED47-AE75-49E4-84F5-0D714964C372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5ACED47-AE75-49E4-84F5-0D714964C372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5ACED47-AE75-49E4-84F5-0D714964C372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5ACED47-AE75-49E4-84F5-0D714964C372}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
