@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f63fbe6c1ef946fcb5764a3c9872a17e" Name="Diagram1">
+        <EntityTypeShape EntityType="QuantumDBModel.AC_CONTROL" Width="1.5" PointX="27.75" PointY="161.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.AC_STATUS_TYPE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.AGENT" Width="1.5" PointX="6.75" PointY="161.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.ALTERNATE_TYPE_CODES" Width="1.5" PointX="34.5" PointY="194" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.ALTERNATES_PARTS_MASTER" Width="1.5" PointX="36.75" PointY="187.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.AP_ACCOUNT" Width="1.5" PointX="3" PointY="171.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.AP_DETAIL" Width="1.5" PointX="11.25" PointY="170" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.APPLICATION_CODES" Width="1.5" PointX="20.25" PointY="156.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.AR_ACCOUNT" Width="1.5" PointX="19.25" PointY="172.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.AR_DETAIL" Width="1.5" PointX="36.5" PointY="173" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.COMMISSION_CODES" Width="1.5" PointX="47.25" PointY="163.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.COMPANy" Width="1.5" PointX="25.5" PointY="151.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.COMPANY_AGENTS" Width="1.5" PointX="36.75" PointY="181.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.COMPANY_LIST" Width="1.5" PointX="27.75" PointY="179.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.CQ_DETAIL" Width="1.5" PointX="47.25" PointY="170.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.CQ_HEADER" Width="1.5" PointX="6" PointY="167.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.CQ_STATUS" Width="1.5" PointX="3.75" PointY="166.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.CURRENCY" Width="1.5" PointX="11.25" PointY="181.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.CUSTOMER_DISCOUNT_CODES" Width="1.5" PointX="27.75" PointY="183.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.DEPARTMENT" Width="1.5" PointX="0.75" PointY="172.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.INVC_DETAIL" Width="1.5" PointX="51.75" PointY="171.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.INVC_HEADER" Width="1.5" PointX="39.75" PointY="167.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PART_APPLICATION_CODES" Width="1.5" PointX="36.75" PointY="165.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PART_CONDITION_CODES" Width="1.5" PointX="28.5" PointY="153.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PART_RANKING_NUMBERS" Width="1.5" PointX="20.25" PointY="192.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PART_SPECS" Width="1.5" PointX="24.75" PointY="209.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PARTS_CATALOG" Width="1.5" PointX="19.5" PointY="182" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PARTS_MASTER" Width="1.5" PointX="22.5" PointY="153.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PARTS_WHS_LOC" Width="1.5" PointX="24.75" PointY="214.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PI_DETAIL" Width="1.5" PointX="39.75" PointY="193.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PI_HEADER" Width="1.5" PointX="19.25" PointY="164.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PI_STATUS" Width="1.5" PointX="17" PointY="161.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PO_CATEGORY_CODES" Width="1.5" PointX="28.5" PointY="195.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PO_DETAIL" Width="1.5" PointX="30.75" PointY="165.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PO_HEADER" Width="1.5" PointX="13.5" PointY="165.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.PO_STATUS" Width="1.5" PointX="11.25" PointY="166.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RC_DETAIL" Width="1.5" PointX="62.25" PointY="174.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RC_DISP_CODES" Width="1.5" PointX="65.25" PointY="170.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RC_HEADER" Width="1.5" PointX="27.75" PointY="214.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RC_SERIAL" Width="1.5" PointX="67.5" PointY="173.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RC_STATUS" Width="1.5" PointX="60" PointY="186.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_CATEGORY_CODES" Width="1.5" PointX="14.25" PointY="188.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_CONTROL" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_DETAIL" Width="1.5" PointX="54.75" PointY="164.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_HEADER" Width="1.5" PointX="16.5" PointY="167.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_PIECE_PARTS" Width="1.5" PointX="60" PointY="178.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_PRE_COSTING_CHARGES" Width="1.5" PointX="27.75" PointY="188.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_STATUS" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SM_DETAIL" Width="1.5" PointX="65.25" PointY="175.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SM_HEADER" Width="1.5" PointX="33.75" PointY="166.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SM_HISTORY" Width="1.5" PointX="70.5" PointY="177.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SM_STATUS" Width="1.5" PointX="31.5" PointY="148.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SO_CATEGORY_CODES" Width="1.5" PointX="37.5" PointY="194.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SO_DETAIL" Width="1.5" PointX="49.5" PointY="164.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SO_HEADER" Width="1.5" PointX="42.75" PointY="165" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SO_STATUS" Width="1.5" PointX="40.5" PointY="163.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.STOCK" Width="1.5" PointX="45" PointY="155.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.STOCK_CATEGORY_CODES" Width="1.5" PointX="20.25" PointY="195.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.STOCK_RESERVATIONS" Width="1.5" PointX="57" PointY="173.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.SYS_USERS" Width="1.5" PointX="9" PointY="157.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuantumDBModel.RO_SALES" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_ACC_DEF" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_AGN_AGN_CMP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_AGN_CQH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_AGN_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_AGN_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_AGN" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ATC_ALT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ALTPNM_ALT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_ALT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APA_APD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APA_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APA_ROH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_APA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_APA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_DPT_APA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_APA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APD_PNM1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_INH_APD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POH_APD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROH_APD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_APD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APC_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APC_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APC_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APC_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_APC_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PAC_APC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ARA_ARD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_ARA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_ARA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_INH_ARD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_ARD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC_OVERRIDE_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC_OVERRIDE_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC_OVERRIDE2_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC_OVERRIDE2_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC2_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMC2_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_CALIB_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_CDC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_CLT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_CMP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_CMP_AGN" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_CQH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_DROP_SHIP_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_INH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_ROH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CMP_SYSUR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_CMP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_NC_CMP_VENDOR_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCH_CMP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCH_SHIP_CMP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSR_CMP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSR_CMP_PO" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSR_CMP_RFQ" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ALTPNM_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CQD_SCC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CQD_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CQH_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PCC_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RPP_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STM_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_CQD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CQH_DPR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CQS_CQH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_CQH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_CQH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_USR_CQH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_INH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_PNC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_ROH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_RPG" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_CUR_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_CUR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_DPT_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_DPT_SYSUR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_INVC_HEA_REF_2496_DEPARTME" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_DPT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POH_DPT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROH_DPT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOH_DPT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_IND_CREDIT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_IND_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_IND_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_INH_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RPP_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SCC_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMD_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOD_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_IND" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SCC_INH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_INH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_USR_INH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PAC_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PCC_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PCC_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PCC_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PCC_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_PCC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PRN_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_PSS" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_PNC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ALTPNM_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ALTPNM_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_PID" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_PWL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_RPG" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_RPP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_SMI" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PNM_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_ALT_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_PNM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.PNM_RO_MODIFY_REF" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PIH_PID" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PIS_PIH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_PIH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ORIG_POC_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POC_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POD_FROM_LOT_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POD_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POD_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POD_STM_FREIGHT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POD_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POH_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMD_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STM_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_POD_AUTH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POH_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_PST_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_POH_REQUESTED" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_USR_POH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_RCH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_RCL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_RCS" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCD_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STR_RCD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RDC_RCL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCS_RCL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_SIGN_OFF_RCL" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCT_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RCT_ROH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROD_RPP" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROD_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROD_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROD_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROD_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROH_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOD_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_ROD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_POH_RPG" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_ROH_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_ROH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_ROH_REQUESTED" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_USR_ROH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RPP_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RPP_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_RPP_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_RPG" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SCC_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMD_SMI" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMD_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMD_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMH_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOD_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_SMD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMH_SMI" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMH_SYSUR_ASSIGNEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMS_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOH_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_SMH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SMS_SMI" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STM_SMI" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SCC_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SCC_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOD_SOD_PARENT" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOD_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOH_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_SOD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SOS_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_EMGR_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_USR_SOH" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STC_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STM_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STM_TRANSFER" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_STR_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_STM" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_TOOL_STR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuantumDBModel.FK_SYSUR_TA_SUP_SYSUR" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

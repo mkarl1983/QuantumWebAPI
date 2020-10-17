@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.1267
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumWebAPI", "QuantumWebAPI.csproj", "{7A6859ED-1D53-4422-B6EF-6A3598AB19D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuntumDB", "..\QuntumDB\QuntumDB.csproj", "{C5ACED47-AE75-49E4-84F5-0D714964C372}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuntumDB", "QuntumDB\QuntumDB.csproj", "{C5ACED47-AE75-49E4-84F5-0D714964C372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
