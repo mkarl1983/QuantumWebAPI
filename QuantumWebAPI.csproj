@@ -177,7 +177,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuntumDB\QuntumDB.csproj">
+    <ProjectReference Include="QuntumDB\QuntumDB.csproj">
       <Project>{c5aced47-ae75-49e4-84f5-0d714964c372}</Project>
       <Name>QuntumDB</Name>
     </ProjectReference>
