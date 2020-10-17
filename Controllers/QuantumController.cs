@@ -13,7 +13,7 @@ using System.Data.Entity;
 
 
 using System.Threading.Tasks;
-
+using System.Web.Mvc;
 
 namespace QuantumWebAPI.Controllers
 {
@@ -49,6 +49,19 @@ namespace QuantumWebAPI.Controllers
         {
             return Ok(_iQuantumRepository.GetPartNumberHits());
         }
+
+
+        //[System.Web.Http.HttpGet]
+        //public ActionResult GetPartNumberHits1()
+        //{
+        //    List<PartNumberHit> accountItems = _iQuantumRepository.GetPartNumberHits().ToList();
+
+        //    return Ok(new
+        //    {
+        //        value = accountItems
+
+        //    });
+        //}
 
         //[ResponseType(typeof(IEnumerable<EmployeeQuotes))]
         //public  Task<IHttpActionResult> GetSugarLevel(int id)
