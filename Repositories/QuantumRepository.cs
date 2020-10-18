@@ -9,7 +9,7 @@ using QuntumDB.QuantumModel;
 namespace QuantumWebAPI.Repositories
 {
     /// <summary>
-    /// 
+    /// Implementation of IQuantumRepository for Oracle DB
     /// </summary>
     public class QuantumRepository : IQuantumRepository
     {
@@ -112,38 +112,23 @@ namespace QuantumWebAPI.Repositories
 
         #region Sales 
         /// <summary>
-        /// GetSalesOrders
+        /// GetSalesOrdersFeed for Today
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<SalesOrder> GetSalesOrders()
+        public IEnumerable<SalesOrder> GetSalesOrdersFeed()
         {
             IEnumerable<SalesOrder> resultData;
-            const string MethodName = "GetSalesOrders()";
+            const string MethodName = "GetSalesOrdersFeed()";
             try
             {
                 using (QuantumEntities dc = new QuantumEntities())
                 {
-
-                    //var tt = (from orderdetail in dc.SO_DETAIL
-                    //         where orderdetail.SO_HEADER.DATE_CREATED.Value.Day == DateTime.Now.Day &&
-                    //               orderdetail.SO_HEADER.DATE_CREATED.Value.Month == DateTime.Now.Month &&
-                    //               orderdetail.SO_HEADER.DATE_CREATED.Value.Year == DateTime.Now.Year && (orderdetail.ROUTE_CODE == "S" || orderdetail.ROUTE_CODE == "E")
-                    //         orderby orderdetail.SO_HEADER.DATE_CREATED.Value)
                     DateTime TodaysDate = DateTime.Now.Date;
-
-                    //  DateTime EndDate = DateTime.Now.AddDays(-5);
                     var query = from orderdetail in dc.SO_DETAIL
-
-                                where
-                               orderdetail.SO_HEADER.DATE_CREATED.Value >= TodaysDate
-                                    //      ( orderdetail.SO_HEADER.DATE_CREATED.Value.Day == TodaysDate.Day &&
-                                    //               orderdetail.SO_HEADER.DATE_CREATED.Value.Month == TodaysDate.Month &&
-                                    //               orderdetail.SO_HEADER.DATE_CREATED.Value.Year == TodaysDate.Year)
-                                    && orderdetail.CUSTOMER_PRICE.HasValue && orderdetail.QTY_ORDERED.HasValue
+                                where orderdetail.SO_HEADER.DATE_CREATED.Value >= TodaysDate && orderdetail.CUSTOMER_PRICE.HasValue && orderdetail.QTY_ORDERED.HasValue
                                       && (orderdetail.ROUTE_CODE == "S" || orderdetail.ROUTE_CODE == "E")
                                 orderby orderdetail.SO_HEADER.DATE_CREATED.Value descending
                                 select new SalesOrder
-
                                 {
                                     SalesNumber = orderdetail.SO_HEADER.SO_NUMBER,
                                     Date = orderdetail.SO_HEADER.DATE_CREATED.Value,
@@ -153,17 +138,38 @@ namespace QuantumWebAPI.Repositories
                                     Type = orderdetail.ROUTE_DESC,
                                     UnitPrice = orderdetail.CUSTOMER_PRICE.Value,
                                     Currency = orderdetail.SO_HEADER.CURRENCY.CURRENCY_CODE,
-                                    Employee = orderdetail.SYS_USERS.EMPLOYEE_CODE
-                                    ,
-                                    TotalAmount = (orderdetail.QTY_ORDERED.Value * orderdetail.CUSTOMER_PRICE.Value)
-                                    ,
-                                    Quantity = orderdetail.QTY_ORDERED.Value
-                                    ,
+                                    Employee = orderdetail.SYS_USERS.EMPLOYEE_CODE,
+                                    TotalAmount = (orderdetail.QTY_ORDERED.Value * orderdetail.CUSTOMER_PRICE.Value),
+                                    Quantity = orderdetail.QTY_ORDERED.Value,
                                     Serialized = orderdetail.PARTS_MASTER.SERIALIZED
-
                                 };
+                    var result = query.ToList().Where(o => !o.PartNumber.StartsWith("CORE REPAIR")).Select(o => o).ToList();
 
-                    resultData = query.ToList().Where(o => !o.PartNumber.StartsWith("CORE REPAIR")).Select(o => o).ToList();
+                    var SerializedSalesOrders = result.Where(o => o.Serialized == "T").OrderByDescending(o => o.Date.TimeOfDay).ToList();
+
+                    var UnSerializedSalesOrders = (
+                        from orderitem in result.Where(o => o.Serialized == "F").OrderByDescending(o => o.Date.TimeOfDay)
+                        group orderitem by
+                            orderitem.SalesNumber
+                         into gcs
+                        select new SalesOrder
+                        {
+                            SalesNumber = gcs.Key,
+                            Date = gcs.Select(o => o.Date).Distinct().FirstOrDefault(),
+                            Employee = gcs.Select(o => o.Employee).Distinct().FirstOrDefault(),
+                            Type = gcs.Select(o => o.Type).Distinct().FirstOrDefault(),
+                            Currency = gcs.Select(o => o.Currency).Distinct().FirstOrDefault(),
+                            Customer = gcs.Select(o => o.Customer).Distinct().FirstOrDefault(),
+                            Serialized = gcs.Select(o => o.Serialized).Distinct().FirstOrDefault(),
+                            TotalAmount = gcs.Sum(o => o.TotalAmount)
+                        }
+                        ).ToList();
+
+
+                    var mergedList = new List<SalesOrder>();
+                    mergedList.AddRange(SerializedSalesOrders);
+                    mergedList.AddRange(UnSerializedSalesOrders);
+                    resultData = mergedList.OrderByDescending(o => o.Date.TimeOfDay);
 
                 }
             }
@@ -175,24 +181,25 @@ namespace QuantumWebAPI.Repositories
         }
 
         /// <summary>
-        /// 
+        /// Get Sales Count by start date and end date where start date uses only date component and enddate uses date and time component.
+        /// for example todays sales count start and end date is today but start and end time is different
         /// </summary>
         /// <param name="StartDate"></param>
         /// <param name="EndDate"></param>
         /// <returns></returns>
-        public int GetSalesCount(DateTime StartDate, DateTime EndDate)
+        public int GetSalesOrdersCount(DateTime StartDate, DateTime EndDate)
         {
             int resultData;
             const string MethodName = "GetSalesCount()";
             try
             {
-                //  DateTime StartDate = Last12MonthsDate(DateTime.Now);
-                //  DateTime EndDate = LastDayOfMonth(DateTime.Now);
+                  DateTime _startDate = StartDate.Date;
+                  DateTime _endDate = EndDate;
 
                 using (QuantumEntities dc = new QuantumEntities())
                 {
                     var query = from salesOrder in dc.SO_HEADER
-                                where (salesOrder.DATE_CREATED.Value >= StartDate && salesOrder.DATE_CREATED.Value <= EndDate)
+                                where (salesOrder.DATE_CREATED.Value >= _startDate && salesOrder.DATE_CREATED.Value <= _endDate)
                                 select salesOrder;
                     var salesytdCount = query.Count();
                     if (salesytdCount > 0)
@@ -208,49 +215,101 @@ namespace QuantumWebAPI.Repositories
             return resultData;
         }
 
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public decimal GetYTDSalesTotals()
+        public decimal GetSalesTodayTotals()
         {
             decimal resultData;
-            const string MethodName = "GetYTDSalesTotals()";
+            const string MethodName = "GetSalesTodayTotals()";
+            try
+            {
+                DateTime StartDate = DateTime.Now.Date;
+                DateTime EndDate = DateTime.Now;
+
+                resultData = GetSalesTotalsByStartEndDate(StartDate, EndDate);
+
+                //using (QuantumEntities dc = new QuantumEntities())
+                //{
+                //    var query = from orderdetail in dc.SO_DETAIL
+                //                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                //                select new { SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0)) };
+
+                //    var salesytdtotal = query.Sum(o => o.SalesAmount);
+                //    if (salesytdtotal > 0)
+                //        resultData = Math.Round(salesytdtotal, 0);
+                //    else resultData = 0;
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesMTDTotals()
+        {
+            decimal resultData;
+            const string MethodName = "GetSalesMTDTotals()";
+            try
+            {
+                DateTime StartDate = FirstDayOfMonth(DateTime.Now);
+                DateTime EndDate = LastDayOfMonth(DateTime.Now);
+                resultData = GetSalesTotalsByStartEndDate(StartDate, EndDate);
+                //using (QuantumEntities dc = new QuantumEntities())
+                //{
+                //    var query = from orderdetail in dc.SO_DETAIL
+                //                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                //                select new{SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))};
+
+                //    var salesytdtotal = query.Sum(o => o.SalesAmount);
+                //    if (salesytdtotal > 0)
+                //        resultData = Math.Round(salesytdtotal, 0);
+                //    else resultData = 0;
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesYTDTotals()
+        {
+            decimal resultData;
+            const string MethodName = "GetSalesYTDTotals()";
             try
             {
                 DateTime StartDate = YTDDate(DateTime.Now);
                 DateTime EndDate = LastDayOfMonth(DateTime.Now);
-
-                using (QuantumEntities dc = new QuantumEntities())
-                {
-                    var query = from orderdetail in dc.SO_DETAIL
-                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
-
-
-                                //select new EmployeeSales
-                                //{
-                                //    Employeee = grp.Key,
-                                //    SalesCount = grp.Select(o=> o.SO_HEADER.SO_NUMBER).Distinct().Count(),
-                                //    TotalSalesUnitPrice = grp.Sum(o => o.QTY_ORDERED.Value * o.CUSTOMER_PRICE.Value)
-                                //};
-
-                                select new
-
-                                {
-
-                                    SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
-
-
-                                };
-
-
-                    var salesytdtotal = query.Sum(o => o.SalesAmount);
-                    if (salesytdtotal > 0)
-                        resultData = Math.Round(salesytdtotal, 0);
-                    else resultData = 0;
-
-
-                }
+                resultData = GetSalesTotalsByStartEndDate(StartDate, EndDate);
+                //using (QuantumEntities dc = new QuantumEntities())
+                //{
+                //    var query = from orderdetail in dc.SO_DETAIL
+                //                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                //                select new
+                //                {
+                //                    SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
+                //                };
+                //    var salesytdtotal = query.Sum(o => o.SalesAmount);
+                //    if (salesytdtotal > 0)
+                //        resultData = Math.Round(salesytdtotal, 0);
+                //    else resultData = 0;
+                //}
             }
             catch (Exception ex)
             {
@@ -263,42 +322,28 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public decimal GetQTDSalesTotals()
+        public decimal GetSalesQTDTotals()
         {
             decimal resultData;
-            const string MethodName = "GetQTDSalesTotals";
+            const string MethodName = "GetSalesQTDTotals";
             try
             {
                 DateTime StartDate = GetQuarterStartingDate(DateTime.Now);
                 DateTime EndDate = GetQuarterEndDate(DateTime.Now);
-
-                using (QuantumEntities dc = new QuantumEntities())
-                {
-                    var query = from orderdetail in dc.SO_DETAIL
-                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
-
-
-                                //select new EmployeeSales
-                                //{
-                                //    Employeee = grp.Key,
-                                //    SalesCount = grp.Select(o=> o.SO_HEADER.SO_NUMBER).Distinct().Count(),
-                                //    TotalSalesUnitPrice = grp.Sum(o => o.QTY_ORDERED.Value * o.CUSTOMER_PRICE.Value)
-                                //};
-
-                                select new
-                                {
-                                    SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
-
-                                };
-
-
-                    var salesytdtotal = query.Sum(o => o.SalesAmount);
-                    if (salesytdtotal > 0)
-                        resultData = Math.Round(salesytdtotal, 0);
-                    else resultData = 0;
-
-
-                }
+                resultData = GetSalesTotalsByStartEndDate(StartDate, EndDate);
+                //using (QuantumEntities dc = new QuantumEntities())
+                //{
+                //    var query = from orderdetail in dc.SO_DETAIL
+                //                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                //                select new
+                //                {
+                //                    SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
+                //                };
+                //    var salesytdtotal = query.Sum(o => o.SalesAmount);
+                //    if (salesytdtotal > 0)
+                //        resultData = Math.Round(salesytdtotal, 0);
+                //    else resultData = 0;
+                //}
             }
             catch (Exception ex)
             {
@@ -311,19 +356,58 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public decimal GetLTMSalesTotals()
+        public decimal GetSalesLTMTotals()
         {
             decimal resultData;
-            const string MethodName = "GetLTMSalesTotals";
+            const string MethodName = "GetSalesLTMTotals";
             try
             {
                 DateTime StartDate = Last12MonthsDate(DateTime.Now);
                 DateTime EndDate = DateTime.Now;
+                resultData = GetSalesTotalsByStartEndDate(StartDate, EndDate);
+                //using (QuantumEntities dc = new QuantumEntities())
+                //{
+                //    var query = from orderdetail in dc.SO_DETAIL
+                //                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                //                select new
+                //                {
+                //                    SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
 
+                //                };
+                //    var salesytdtotal = query.Sum(o => o.SalesAmount);
+                //    if (salesytdtotal > 0)
+                //        resultData = Math.Round(salesytdtotal, 0);
+                //    else resultData = 0;
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+
+        /// <summary>
+        /// Get Sales Totals By Start and End Date.
+        /// if no start or end date is given it will send result for todays sales totals
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public decimal GetSalesTotalsByStartEndDate(DateTime? StartDate, DateTime? EndDate)
+        {
+            decimal resultData;
+            const string MethodName = "GetSalesTotalsByStartEndDate";
+            try
+            {
+                DateTime _startDate =   StartDate.HasValue ? new DateTime(StartDate.Value.Year, StartDate.Value.Month, StartDate.Value.Day)  : new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                DateTime _endDate = EndDate.HasValue ? new DateTime(EndDate.Value.Year, EndDate.Value.Month, EndDate.Value.Day,23,59,00) : DateTime.Now;
                 using (QuantumEntities dc = new QuantumEntities())
                 {
                     var query = from orderdetail in dc.SO_DETAIL
-                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= _startDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= _endDate)
                                 select new
                                 {
                                     SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
@@ -343,26 +427,24 @@ namespace QuantumWebAPI.Repositories
             return resultData;
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public SaleOrderToQuoteRatio GetSaleOrderToQuoteRatios()
+        public AllRatioTotals GetSaleOrderToQuoteRatios()
         {
-            SaleOrderToQuoteRatio resultData;
+            AllRatioTotals resultData;
             const string MethodName = "GetSaleOrderToQuoteRatios()";
             try
             {
                 DateTime TodaysDate = DateTime.Now;
                 DateTime EndDate = LastDayOfMonth(DateTime.Now);
 
-                int TodaySales = GetSalesCount(TodaysDate.Date, TodaysDate);
-                int MTDSales = GetSalesCount(FirstDayOfMonth(TodaysDate), TodaysDate);
-                int YTDSales = GetSalesCount(YTDDate(TodaysDate), TodaysDate);
-                int QTDSales = GetSalesCount(GetQuarterStartingDate(TodaysDate), GetQuarterEndDate(TodaysDate));
-                int LTMSales = GetSalesCount(Last12MonthsDate(TodaysDate), TodaysDate);
+                int TodaySales = GetSalesOrdersCount(TodaysDate.Date, TodaysDate);
+                int MTDSales = GetSalesOrdersCount(FirstDayOfMonth(TodaysDate), TodaysDate);
+                int YTDSales = GetSalesOrdersCount(YTDDate(TodaysDate), TodaysDate);
+                int QTDSales = GetSalesOrdersCount(GetQuarterStartingDate(TodaysDate), GetQuarterEndDate(TodaysDate));
+                int LTMSales = GetSalesOrdersCount(Last12MonthsDate(TodaysDate), TodaysDate);
 
                 int TodayQuotes = GetQuotesCount(TodaysDate.Date, TodaysDate);
                 int MTDQuotes = GetQuotesCount(FirstDayOfMonth(TodaysDate), TodaysDate);
@@ -376,13 +458,42 @@ namespace QuantumWebAPI.Repositories
                 double QTDOTQRatio = (QTDSales > 0 && QTDQuotes > 0) ? Math.Round((((double)QTDSales / QTDQuotes) * 100), 2) : (double)0;
                 double LTMOTQRatio = (LTMSales > 0 && LTMQuotes > 0) ? Math.Round((((double)LTMSales / LTMQuotes) * 100), 2) : (double)0;
 
-                resultData = new SaleOrderToQuoteRatio() { TodayOrderToQuoteRatio = TodayOTQRatio, MTDOrderToQuoteRatio = MTDOTQRatio, YTDOrderToQuoteRatio = YTDOTQRatio, QTDOrderToQuoteRatio = QTDOTQRatio, LTMOrderToQuoteRatio = LTMOTQRatio };
+                resultData = new AllRatioTotals() { TodayTotals = TodayOTQRatio, MTDTotals = MTDOTQRatio, YTDTotals = YTDOTQRatio, QTDTotals = QTDOTQRatio, LTMTotals = LTMOTQRatio };
             }
             catch (Exception ex)
             {
                 throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
             }
 
+            return resultData;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetSalesOrderTotals()
+        {
+            AllTotals resultData;
+            const string MethodName = "GetSalesOrderTotals()";
+            try
+            {
+                //DateTime TodaysDate = DateTime.Now;
+                //DateTime EndDate = LastDayOfMonth(DateTime.Now);
+
+                decimal TodaySales = GetSalesTodayTotals();
+                decimal MTDSales = GetSalesMTDTotals();
+                decimal YTDSales = GetSalesYTDTotals();
+                decimal QTDSales = GetSalesQTDTotals();
+                decimal LTMSales = GetSalesLTMTotals();
+
+                resultData = new AllTotals() { TodayTotals = TodaySales, MTDTotals = MTDSales, YTDTotals = YTDSales, QTDTotals = QTDSales, LTMTotals = LTMSales };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
             return resultData;
         }
 
@@ -426,6 +537,7 @@ namespace QuantumWebAPI.Repositories
 
             return resultData;
         }
+
         /// <summary>
         /// GetQuoteFeeds
         /// </summary>
@@ -436,12 +548,13 @@ namespace QuantumWebAPI.Repositories
             const string MethodName = "GetQuoteFeeds()";
             try
             {
+                DateTime TodaysDate = DateTime.Now;
                 using (QuantumEntities dc = new QuantumEntities())
                 {
                     var query = from quotedetail in dc.CQ_DETAIL
-                                where quotedetail.CQ_HEADER.DATE_CREATED.Value.Day == DateTime.Now.Day &&
-                                      quotedetail.CQ_HEADER.DATE_CREATED.Value.Month == DateTime.Now.Month &&
-                                      quotedetail.CQ_HEADER.DATE_CREATED.Value.Year == DateTime.Now.Year
+                                where quotedetail.CQ_HEADER.DATE_CREATED.Value.Day == TodaysDate.Day &&
+                                      quotedetail.CQ_HEADER.DATE_CREATED.Value.Month == TodaysDate.Month &&
+                                      quotedetail.CQ_HEADER.DATE_CREATED.Value.Year == TodaysDate.Year
                                 orderby quotedetail.CQ_HEADER.DATE_CREATED.Value descending
                                 select new Quote
                                 {
@@ -458,7 +571,7 @@ namespace QuantumWebAPI.Repositories
                                     TotalAmount = (quotedetail.CUSTOMER_PRICE.Value * quotedetail.QTY_QUOTED.Value)
                                 };
 
-                    resultData = query.ToList();
+                    resultData = query.OrderByDescending(q => q.Date).ToList();
                 }
 
             }
@@ -480,7 +593,7 @@ namespace QuantumWebAPI.Repositories
         public decimal GetYTDQuotesTotals(DateTime StartDate, DateTime EndDate)
         {
             decimal resultData;
-            const string MethodName = "GetYTDQuotes()";
+            const string MethodName = "GetYTDQuotesTotals()";
             try
             {
                 //  DateTime StartDate = Last12MonthsDate(DateTime.Now);
@@ -510,6 +623,8 @@ namespace QuantumWebAPI.Repositories
             return resultData;
         }
 
+
+
         #endregion
 
         #region PartNumber Stats
@@ -518,10 +633,10 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PartNumberHit> GetPartNumberHits()
+        public IEnumerable<PartNumberHit> GetPartNumberTodayHits()
         {
             IEnumerable<PartNumberHit> resultData;
-            const string MethodName = "GetPartNumberHits()";
+            const string MethodName = "GetPartNumberTodayHits()";
             try
             {
                 using (QuantumEntities dc = new QuantumEntities())
@@ -636,66 +751,51 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<EmployeeSales> GetEmployeeMTDSalesOrders()
+        public IEnumerable<EmployeeQuotes> GetEmployeeTodayQuotes()
         {
-            IEnumerable<EmployeeSales> resultData;
-            const string MethodName = "GetEmployeeMTDSalesOrders()";
+            IEnumerable<EmployeeQuotes> resultData;
+            const string MethodName = "GetEmployeeTodayQuotes()";
             try
             {
-                DateTime StartDate = FirstDayOfMonth(DateTime.Now);
-                DateTime EndDate = LastDayOfMonth(DateTime.Now);
-
+                DateTime TodaysDate = DateTime.Now;
                 using (QuantumEntities dc = new QuantumEntities())
                 {
-                    var query = from orderdetail in dc.SO_DETAIL
-                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
-
-
-                                //select new EmployeeSales
-                                //{
-                                //    Employeee = grp.Key,
-                                //    SalesCount = grp.Select(o=> o.SO_HEADER.SO_NUMBER).Distinct().Count(),
-                                //    TotalSalesUnitPrice = grp.Sum(o => o.QTY_ORDERED.Value * o.CUSTOMER_PRICE.Value)
-                                //};
-
-                                select new SalesOrder
-
+                    var query = from quotedetail in dc.CQ_DETAIL
+                                where (
+                                       quotedetail.CQ_HEADER.DATE_CREATED.Value.Day == TodaysDate.Day &&
+                                      quotedetail.CQ_HEADER.DATE_CREATED.Value.Month == TodaysDate.Month &&
+                                      quotedetail.CQ_HEADER.DATE_CREATED.Value.Year == TodaysDate.Year)
+                                select new Quote
                                 {
-                                    SalesNumber = orderdetail.SO_HEADER.SO_NUMBER,
-                                    Date = orderdetail.SO_HEADER.DATE_CREATED.Value,
-                                    Customer = orderdetail.SO_HEADER.COMPANy.COMPANY_NAME,
-                                    Description = orderdetail.PARTS_MASTER.DESCRIPTION,
-                                    PartNumber = orderdetail.PARTS_MASTER.PN,
-                                    Type = orderdetail.ROUTE_DESC,
-                                    UnitPrice = orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0,
-                                    Currency = orderdetail.SO_HEADER.CURRENCY.CURRENCY_CODE,
-                                    Employee = orderdetail.SO_HEADER.SYS_USERS1.EMPLOYEE_CODE
-                                    ,
-                                    TotalAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
-                                    ,
-                                    Quantity = orderdetail.QTY_ORDERED.Value
-
+                                    QuoteNumber = quotedetail.CQ_HEADER.CQ_NUMBER,
+                                    PartNumber = quotedetail.PARTS_MASTER.PN,
+                                    Description = quotedetail.PARTS_MASTER.DESCRIPTION,
+                                    Date = quotedetail.CQ_HEADER.DATE_CREATED.Value,
+                                    Type = quotedetail.ROUTE_DESC,
+                                    Currency = quotedetail.CQ_HEADER.CURRENCY.CURRENCY_CODE,
+                                    UnitPrice = quotedetail.CUSTOMER_PRICE.Value,
+                                    Customer = quotedetail.CQ_HEADER.BILL_NAME,
+                                    Employee = quotedetail.SYS_USERS.EMPLOYEE_CODE,
+                                    Quantity = quotedetail.QTY_QUOTED.Value,
+                                    TotalAmount = (quotedetail.CUSTOMER_PRICE.Value * quotedetail.QTY_QUOTED.Value)
                                 };
-
-
 
                     var temp = from d in query.ToList()
                                group d by d.Employee into grp
-                               select new EmployeeSales
+                               select new EmployeeQuotes
                                {
                                    Employeee = grp.Key,
-                                   SalesCount = grp.Select(o => o.SalesNumber).Distinct().Count(),
-                                   TotalSalesUnitPrice = grp.Sum(o => o.TotalAmount)
+                                   QuotesCount = grp.Select(o => o.QuoteNumber).Distinct().Count(),
+                                   TotalQuotesUnitPrice = grp.Sum(o => o.TotalAmount)
                                };
 
-                    resultData = temp.OrderByDescending(o => o.SalesCount).ToList();
+                    resultData = temp.OrderByDescending(o => o.QuotesCount).ToList();
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
             }
-
             return resultData;
         }
 
@@ -716,9 +816,6 @@ namespace QuantumWebAPI.Repositories
                 {
                     var query = from quotedetail in dc.CQ_DETAIL
                                 where (quotedetail.CQ_HEADER.DATE_CREATED.Value >= StartDate && quotedetail.CQ_HEADER.DATE_CREATED.Value <= EndDate)
-
-                                // group quotedetail by quotedetail.CQ_HEADER.SYS_USERS.EMPLOYEE_CODE into grp
-
                                 select new Quote
                                 {
                                     QuoteNumber = quotedetail.CQ_HEADER.CQ_NUMBER,
@@ -733,14 +830,6 @@ namespace QuantumWebAPI.Repositories
                                     Quantity = quotedetail.QTY_QUOTED.Value,
                                     TotalAmount = (quotedetail.CUSTOMER_PRICE.Value * quotedetail.QTY_QUOTED.Value)
                                 };
-
-                    //select new EmployeeQuotes
-                    //{
-                    //    Employeee = grp.Key,
-                    //    QuotesCount = grp.Select(o => o.CQ_HEADER.CQ_NUMBER).Distinct().Count(),
-                    //    TotalQuotesUnitPrice = grp.Sum(o => o.CUSTOMER_PRICE.Value * o.QTY_QUOTED.Value)
-                    //};
-
 
                     var temp = from d in query.ToList()
                                group d by d.Employee into grp
@@ -762,28 +851,49 @@ namespace QuantumWebAPI.Repositories
             return resultData;
         }
 
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<EmployeeSales> GetTotalEmployeeSales()
+        public IEnumerable<EmployeeSales> GetEmployeeTodaySalesOrders()
         {
             IEnumerable<EmployeeSales> resultData;
             const string MethodName = "GetTotalEmployeeSales()";
             try
             {
-                var TodaySalesOrders = this.GetSalesOrders();
+                DateTime TodaysDate = DateTime.Now.Date;
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+                    var query = from orderdetail in dc.SO_DETAIL
+                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= TodaysDate)
+                                select new SalesOrder
+                                {
+                                    SalesNumber = orderdetail.SO_HEADER.SO_NUMBER,
+                                    Date = orderdetail.SO_HEADER.DATE_CREATED.Value,
+                                    Customer = orderdetail.SO_HEADER.COMPANy.COMPANY_NAME,
+                                    Description = orderdetail.PARTS_MASTER.DESCRIPTION,
+                                    PartNumber = orderdetail.PARTS_MASTER.PN,
+                                    Type = orderdetail.ROUTE_DESC,
+                                    UnitPrice = orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0,
+                                    Currency = orderdetail.SO_HEADER.CURRENCY.CURRENCY_CODE,
+                                    Employee = orderdetail.SO_HEADER.SYS_USERS1.EMPLOYEE_CODE,
+                                    TotalAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0)),
+                                    Quantity = orderdetail.QTY_ORDERED.Value
+                                };
 
-                var query = from orders in TodaySalesOrders
-                            group orders by orders.Employee into grp
-                            select new EmployeeSales
-                            {
-                                Employeee = grp.Key,
-                                SalesCount = grp.Select(o => o.SalesNumber).Distinct().Count(),
-                                TotalSalesUnitPrice = grp.Sum(o => o.TotalAmount)
-                            };
+                    var temp = from d in query.ToList()
+                               group d by d.Employee into grp
+                               select new EmployeeSales
+                               {
+                                   Employeee = grp.Key,
+                                   SalesCount = grp.Select(o => o.SalesNumber).Distinct().Count(),
+                                   TotalSalesUnitPrice = grp.Sum(o => o.TotalAmount)
+                               };
 
-                resultData = query.OrderByDescending(o => o.SalesCount).ToList();
+                    resultData = temp.OrderByDescending(o => o.SalesCount).ToList();
+                }
 
             }
             catch (Exception ex)
@@ -797,29 +907,51 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<EmployeeQuotes> GetTotalEmployeeQuotes()
+        public IEnumerable<EmployeeSales> GetEmployeeMTDSalesOrders()
         {
-            IEnumerable<EmployeeQuotes> resultData;
-            const string MethodName = "GetTotalEmployeeQuotes()";
-
+            IEnumerable<EmployeeSales> resultData;
+            const string MethodName = "GetEmployeeMTDSalesOrders()";
             try
             {
-                var TodayQuotes = this.GetQuoteFeeds();
+                DateTime StartDate = FirstDayOfMonth(DateTime.Now);
+                DateTime EndDate = LastDayOfMonth(DateTime.Now);
 
-                var query = from quotes in TodayQuotes
-                            group quotes by quotes.Employee into grp
-                            select new EmployeeQuotes
-                            {
-                                Employeee = grp.Key,
-                                QuotesCount = grp.Select(o => o.QuoteNumber).Distinct().Count(),
-                                TotalQuotesUnitPrice = grp.Sum(o => o.TotalAmount)
-                            };
-                resultData = query.OrderByDescending(o => o.QuotesCount).ToList();
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+                    var query = from orderdetail in dc.SO_DETAIL
+                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= EndDate)
+                                select new SalesOrder
+                                {
+                                    SalesNumber = orderdetail.SO_HEADER.SO_NUMBER,
+                                    Date = orderdetail.SO_HEADER.DATE_CREATED.Value,
+                                    Customer = orderdetail.SO_HEADER.COMPANy.COMPANY_NAME,
+                                    Description = orderdetail.PARTS_MASTER.DESCRIPTION,
+                                    PartNumber = orderdetail.PARTS_MASTER.PN,
+                                    Type = orderdetail.ROUTE_DESC,
+                                    UnitPrice = orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0,
+                                    Currency = orderdetail.SO_HEADER.CURRENCY.CURRENCY_CODE,
+                                    Employee = orderdetail.SO_HEADER.SYS_USERS1.EMPLOYEE_CODE,
+                                    TotalAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0)),
+                                    Quantity = orderdetail.QTY_ORDERED.Value
+                                };
+
+                    var temp = from d in query.ToList()
+                               group d by d.Employee into grp
+                               select new EmployeeSales
+                               {
+                                   Employeee = grp.Key,
+                                   SalesCount = grp.Select(o => o.SalesNumber).Distinct().Count(),
+                                   TotalSalesUnitPrice = grp.Sum(o => o.TotalAmount)
+                               };
+
+                    resultData = temp.OrderByDescending(o => o.SalesCount).ToList();
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
             }
+
             return resultData;
         }
 
@@ -838,8 +970,6 @@ namespace QuantumWebAPI.Repositories
             try
             {
                 DateTime TodayDate = DateTime.Now;
-
-
                 using (QuantumEntities dc = new QuantumEntities())
                 {
                     var query = from invoiceheader in dc.INVC_HEADER
@@ -911,7 +1041,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public decimal GetYTDInvoiceTotals()
+        public decimal GetInvoiceYTDTotals()
         {
             decimal resultData;
             const string MethodName = "GetYTDInvoiceTotals()";
@@ -950,7 +1080,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public decimal GetQTDInvoiceTotals()
+        public decimal GetInvoiceQTDTotals()
         {
             decimal resultData;
             const string MethodName = "GetQTDInvoiceTotals()";
@@ -988,7 +1118,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public decimal GetLTMInvoiceTotals()
+        public decimal GetInvoiceLTMTotals()
         {
             decimal resultData;
             const string MethodName = "GetLTMInvoiceTotals()";
@@ -1020,6 +1150,35 @@ namespace QuantumWebAPI.Repositories
                 throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
             }
 
+            return resultData;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetInvoiceTotals()
+        {
+            AllTotals resultData;
+            const string MethodName = "GetInvoiceTotals()";
+            try
+            {
+                DateTime TodaysDate = DateTime.Now;
+                DateTime EndDate = LastDayOfMonth(DateTime.Now);
+
+                decimal TodayINV = this.GetInvoiceTodayTotals();
+                decimal MTDINV = this.GetInvoiceMTDTotals();
+                decimal YTDINV = this.GetInvoiceYTDTotals();
+                decimal QTDINV = this.GetInvoiceQTDTotals();
+                decimal LTMINV = this.GetInvoiceLTMTotals();
+
+                resultData = new AllTotals() { TodayTotals = TodayINV, MTDTotals = MTDINV, YTDTotals = YTDINV, QTDTotals = QTDINV, LTMTotals = LTMINV };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
             return resultData;
         }
 
@@ -1211,9 +1370,9 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public PurchaseOrderTotals GetPurchaseOrderTotals()
+        public AllTotals GetPurchaseOrderTotals()
         {
-            PurchaseOrderTotals resultData;
+            AllTotals resultData;
             const string MethodName = "GetPurchaseOrderTotals()";
             try
             {
@@ -1226,7 +1385,7 @@ namespace QuantumWebAPI.Repositories
                 decimal QTDPO = GetPurchaseOrderQTDTotals();
                 decimal LTMPO = GetPurchaseOrderLTMTotals();
 
-                resultData = new PurchaseOrderTotals() { TodayPurchaseOrder = TodayPO, MTDPurchaseOrder = MTDPO, YTDPurchaseOrder = YTDPO, QTDPurchaseOrder = QTDPO, LTMPurchaseOrder = LTMPO };
+                resultData = new AllTotals() { TodayTotals = TodayPO, MTDTotals = MTDPO, YTDTotals = YTDPO, QTDTotals = QTDPO, LTMTotals = LTMPO };
             }
             catch (Exception ex)
             {
@@ -1254,40 +1413,25 @@ namespace QuantumWebAPI.Repositories
                 using (QuantumEntities dc = new QuantumEntities())
                 {
                     var query = from rodetail in dc.RO_DETAIL
-                                    //join sodetail in dc.SO_DETAIL on rodetail.ROD_AUTO_KEY equals sodetail.ROD_AUTO_KEY into rsdetail
                                 where
                                 rodetail.RO_HEADER.OPEN_FLAG == "T"
-
                                 orderby rodetail.RO_HEADER.ENTRY_DATE ascending
-                                //from sd in rsdetail.DefaultIfEmpty()
                                 select new
                                 {
                                     RoDetail = rodetail
-
-                                }
-                              ;
-
+                                };
                     var tt = query.Select(rsdetail => new RepairOrder
                     {
-                        ComapanyName = rsdetail.RoDetail.RO_HEADER.VENDOR_NAME
-                                     ,
-                        RONumber = rsdetail.RoDetail.RO_HEADER.RO_NUMBER
-                                     ,
-                        EntryDate = rsdetail.RoDetail.RO_HEADER.ENTRY_DATE
-                                     ,
-                        PartNumber = rsdetail.RoDetail.PARTS_MASTER.PN
-                                     ,
-                        SONumber = rsdetail.RoDetail.SO_DETAIL1.SO_HEADER.SO_NUMBER
-                                    ,
-                        Status = rsdetail.RoDetail.SDF_ROD_010
-                                    ,
-
+                        ComapanyName = rsdetail.RoDetail.RO_HEADER.VENDOR_NAME,
+                        RONumber = rsdetail.RoDetail.RO_HEADER.RO_NUMBER,
+                        EntryDate = rsdetail.RoDetail.RO_HEADER.ENTRY_DATE,
+                        PartNumber = rsdetail.RoDetail.PARTS_MASTER.PN,
+                        SONumber = rsdetail.RoDetail.SO_DETAIL1.SO_HEADER.SO_NUMBER,
+                        Status = rsdetail.RoDetail.SDF_ROD_010,
                         // AS DISCUSSED RO_UDF_002 IS SENT TO CUSTOMER
-                        UDF002 = rsdetail.RoDetail.RO_UDF_002
-                                    // AS DISCUSSED RO_UDF_003 RO APPROVED DATE
-                                    ,
+                        UDF002 = rsdetail.RoDetail.RO_UDF_002,
+                         // AS DISCUSSED RO_UDF_003 RO APPROVED DATE
                         UDF003 = rsdetail.RoDetail.RO_UDF_003
-
                     }).ToList();
                     ;
 
@@ -1490,22 +1634,21 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public RepairOrderTotals GetRepairOrderTotals()
+        public AllTotals GetRepairOrderTotals()
         {
-            RepairOrderTotals resultData;
+            AllTotals resultData;
             const string MethodName = "GetRepairOrderTotals()";
             try
             {
                 DateTime TodaysDate = DateTime.Now;
                 DateTime EndDate = LastDayOfMonth(DateTime.Now);
-
                 decimal TodayRO = GetRepairOrderTodayTotals();
                 decimal MTDRO = GetRepairOrderMTDTotals();
                 decimal YTDRO = GetRepairOrderYTDTotals();
                 decimal QTDRO = GetRepairOrderQTDTotals();
                 decimal LTMRO = GetRepairOrderLTMTotals();
 
-                resultData = new RepairOrderTotals() { TodayRepairOrder = TodayRO, MTDRepairOrder = MTDRO, YTDRepairOrder = YTDRO, QTDRepairOrder = QTDRO, LTMRepairOrder = LTMRO };
+                resultData = new AllTotals() { TodayTotals = TodayRO, MTDTotals = MTDRO, YTDTotals = YTDRO, QTDTotals = QTDRO, LTMTotals = LTMRO };
             }
             catch (Exception ex)
             {
@@ -1516,7 +1659,7 @@ namespace QuantumWebAPI.Repositories
 
         #endregion
 
-        #region Methods for New Screen Slaes/Customer Type
+        #region Slaes/Customer Type related
         /// <summary>
         /// 
         /// </summary>

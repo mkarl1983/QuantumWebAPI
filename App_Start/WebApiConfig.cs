@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Newtonsoft.Json.Serialization;
-using QuantumWebAPI.Repositories;
+
+
 
 namespace QuantumWebAPI
 {
@@ -35,8 +36,6 @@ namespace QuantumWebAPI
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             jsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
-
-           // config.Services.Replace(typeof(IQuantumRepository), new QuantumRepository());
         }
     }
 }

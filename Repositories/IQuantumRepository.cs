@@ -6,116 +6,335 @@ using QuantumWebAPI.Models;
 
 namespace QuantumWebAPI.Repositories
 {
-     public interface IQuantumRepository
+    /// <summary>
+    /// IQuantumRepository for Oracle DB
+    /// </summary>
+    public interface IQuantumRepository
     {
-        #region Shipping
-        IEnumerable<Shipping> GetShippingFeeds();
+        #region Shipping 
 
-         IEnumerable<Shipping> GetWarehouseShipmentsAndRepairsOrders();
-        #endregion
+        /// <summary>
+        /// GetShippingFeeds
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Shipping> GetShippingFeeds();
 
-        #region Employee Part Number, Related Totals
-         IEnumerable<PartNumberHit> GetPartNumberHits();
 
-         IEnumerable<GoodRecevied> GetGRNFeeds();
-
-         IEnumerable<PartNumberHit> GetPartNumber30DayHits();
-
-         IEnumerable<EmployeeSales> GetTotalEmployeeSales();
-
-         IEnumerable<EmployeeQuotes> GetTotalEmployeeQuotes();
-
-         IEnumerable<EmployeeSales> GetEmployeeMTDSalesOrders();
-
-         IEnumerable<EmployeeQuotes> GetEmployeeMTDQuotes();
+        /// <summary>
+        /// GetWarehouseShipmentsAndRepairsOrders
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Shipping> GetWarehouseShipmentsAndRepairsOrders();
 
         #endregion
 
-        #region Invoice Totals
-         decimal GetInvoiceTodayTotals();
-         decimal GetInvoiceMTDTotals();
-         decimal GetYTDInvoiceTotals();
-         decimal GetQTDInvoiceTotals();
-         decimal GetLTMInvoiceTotals();
+        #region Sales 
+        /// <summary>
+        /// GetSalesOrdersFeed for Today
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SalesOrder> GetSalesOrdersFeed();
+
+        /// <summary>
+        /// Get Sales Count by start date and end date where start date uses only date component and enddate uses date and time component.
+        /// for example todays sales count start and end date is today but start and end time is different
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public int GetSalesOrdersCount(DateTime StartDate, DateTime EndDate);
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesTodayTotals();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesMTDTotals();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesYTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesQTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetSalesLTMTotals();
+
+
+        /// <summary>
+        /// Get Sales Totals By Start and End Date.
+        /// if no start or end date is given it will send result for todays sales totals
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public decimal GetSalesTotalsByStartEndDate(DateTime? StartDate, DateTime? EndDate);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllRatioTotals GetSaleOrderToQuoteRatios();
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetSalesOrderTotals();
+
         #endregion
 
-        #region Sales and Quotes Totals
+        #region Quotes 
 
-        IEnumerable<SalesOrder> GetSalesOrders();
-         IEnumerable<Quote> GetQuoteFeeds();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public int GetQuotesCount(DateTime StartDate, DateTime EndDate);
 
-         int GetSalesCount(DateTime StartDate, DateTime EndDate);
-         decimal GetYTDSalesTotals();
+        /// <summary>
+        /// GetQuoteFeeds
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Quote> GetQuoteFeeds();
 
 
-         decimal GetQTDSalesTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public decimal GetYTDQuotesTotals(DateTime StartDate, DateTime EndDate);
 
 
-         decimal GetLTMSalesTotals();
+        #endregion
+
+        #region PartNumber Stats
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PartNumberHit> GetPartNumberTodayHits();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<GoodRecevied> GetGRNFeeds();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PartNumberHit> GetPartNumber30DayHits();
+
+        #endregion
+
+        #region Employee Totals
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<EmployeeQuotes> GetEmployeeTodayQuotes();
 
-         decimal GetYTDQuotesTotals(DateTime StartDate, DateTime EndDate);
-       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<EmployeeSales> GetEmployeeMTDSalesOrders();
 
-         int GetQuotesCount(DateTime StartDate, DateTime EndDate);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<EmployeeQuotes> GetEmployeeMTDQuotes();
 
-         SaleOrderToQuoteRatio GetSaleOrderToQuoteRatios();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<EmployeeSales> GetEmployeeTodaySalesOrders();
+
+        #endregion
+
+        #region  Invoice Order Totals
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetInvoiceTodayTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetInvoiceMTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetInvoiceYTDTotals();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetInvoiceQTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetInvoiceLTMTotals();
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetInvoiceTotals();
 
         #endregion
 
         #region Purchase Order Totals
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetPurchaseOrderTodayTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetPurchaseOrderMTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetPurchaseOrderYTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetPurchaseOrderQTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetPurchaseOrderLTMTotals();
 
-         decimal GetPurchaseOrderTodayTotals();
 
-
-         decimal GetPurchaseOrderMTDTotals();
-
-
-         decimal GetPurchaseOrderYTDTotals();
-
-
-         decimal GetPurchaseOrderQTDTotals();
-
-         decimal GetPurchaseOrderLTMTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetPurchaseOrderTotals();
 
         #endregion
 
         #region Repair Order Totals
 
-         IEnumerable<RepairOrder> GetRepairOrders();
-         decimal GetRepairOrderTodayTotals();
 
-         decimal GetRepairOrderMTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<RepairOrder> GetRepairOrders();
 
-         decimal GetRepairOrderYTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetRepairOrderTodayTotals();
 
-         decimal GetRepairOrderQTDTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetRepairOrderMTDTotals();
 
-         decimal GetRepairOrderLTMTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetRepairOrderYTDTotals();
 
-        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetRepairOrderQTDTotals();
 
-        #region Purchase Order Totals
-         PurchaseOrderTotals GetPurchaseOrderTotals();
-        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetRepairOrderLTMTotals();
 
-        #region Repair Order Totals
-         RepairOrderTotals GetRepairOrderTotals();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetRepairOrderTotals();
+
         #endregion
 
         #region Slaes/Customer Type related
-         IEnumerable<SalesByCustomerType> GetSalesByCustomerType(DateTime StartDate, DateTime EndDate);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public IEnumerable<SalesByCustomerType> GetSalesByCustomerType(DateTime StartDate, DateTime EndDate);
 
-         IEnumerable<SalesByCustomerTypeStats> GetSalesByCustomerTypeStats(DateTime StartDate, DateTime EndDate);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public IEnumerable<SalesByCustomerTypeStats> GetSalesByCustomerTypeStats(DateTime StartDate, DateTime EndDate);
 
-         IEnumerable<SalesByAirCraftType> GetSalesByAirCraftType(DateTime StartDate, DateTime EndDate);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public IEnumerable<SalesByAirCraftType> GetSalesByAirCraftType(DateTime StartDate, DateTime EndDate);
 
-         IEnumerable<SalesByAirCraftTypeStats> GetSalesByAirCraftTypeLast3months();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SalesByAirCraftTypeStats> GetSalesByAirCraftTypeLast3months();
 
-         IEnumerable<SalesByAirCraftTypeStats> GetSalesByAirCraftTypeLast12months();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SalesByAirCraftTypeStats> GetSalesByAirCraftTypeLast12months();
         #endregion
 
     }

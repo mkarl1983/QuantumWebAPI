@@ -140,13 +140,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ApiResponse.cs" />
     <Compile Include="Models\EmployeeQuotes.cs" />
     <Compile Include="Models\EmployeeSales.cs" />
     <Compile Include="Models\GoodRecevied.cs" />
     <Compile Include="Models\PartNumberHit.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\RepairOrder.cs" />
-    <Compile Include="Models\SaleOrderToQuoteRatio.cs" />
+    <Compile Include="Models\AllTotals.cs" />
     <Compile Include="Models\SalesByAirCraftType.cs" />
     <Compile Include="Models\SalesByCustomerType.cs" />
     <Compile Include="Models\SalesByCustomerTypeViewModel.cs" />
