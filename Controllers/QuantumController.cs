@@ -25,6 +25,9 @@ namespace QuantumWebAPI.Controllers
 
         private readonly IQuantumRepository _iQuantumRepository;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public QuantumController()
         {
             _iQuantumRepository = new QuantumRepository();
@@ -47,81 +50,11 @@ namespace QuantumWebAPI.Controllers
         [ResponseType(typeof(IEnumerable<PartNumberHit>))]
         public IHttpActionResult GetPartNumberHits(int id)
         {
+          //  return NotFound();
             return Ok(_iQuantumRepository.GetPartNumberHits());
         }
 
 
-        //[System.Web.Http.HttpGet]
-        //public ActionResult GetPartNumberHits1()
-        //{
-        //    List<PartNumberHit> accountItems = _iQuantumRepository.GetPartNumberHits().ToList();
-
-        //    return Ok(new
-        //    {
-        //        value = accountItems
-
-        //    });
-        //}
-
-        //[ResponseType(typeof(IEnumerable<EmployeeQuotes))]
-        //public  Task<IHttpActionResult> GetSugarLevel(int id)
-        //{
-        //    EmployeeQuotes sugarLevel = _iQuantumRepository.GetEmployeeMTDQuotes();
-        //    if (sugarLevel == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(sugarLevel);
-        //}
-
-
-        //    [ResponseType(typeof(void))]
-        //    public async Task<IHttpActionResult> PutSugarLevel(int id, SugarLevel sugarLevel)
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
-
-        //        if (id != sugarLevel.Id)
-        //        {
-        //            return BadRequest();
-        //        }
-
-        //        _db.Entry(sugarLevel).State = EntityState.Modified;
-
-        //        try
-        //        {
-        //            await _db.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (SugarLevelExists(id))
-        //            {
-        //                throw;
-        //            }
-
-        //            return NotFound();
-        //        }
-
-        //        return StatusCode(HttpStatusCode.NoContent);
-        //    }
-
-        //
-        //    [ResponseType(typeof(SugarLevel))]
-        //    public async Task<IHttpActionResult> PostSugarLevel(SugarLevel sugarLevel)
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
-
-        //        _db.SugarLevels.Add(sugarLevel);
-        //        await _db.SaveChangesAsync();
-
-        //        return CreatedAtRoute("DefaultApi", new { id = sugarLevel.Id }, sugarLevel);
-        //    }
-        //}
+        
     }
 }
