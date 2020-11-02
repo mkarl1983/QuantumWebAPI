@@ -18,6 +18,7 @@ namespace QuantumWebAPI.Models
         public decimal Priority { get; set; }
         public string IsHazmat { get; set; }
         public string SalesPerson { get; set; }
+        public string PriorityType { get; set; }
 
     }
 }

@@ -454,5 +454,135 @@ namespace QuantumWebAPI.Controllers
         }
 
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetShipmentsAndRepairsOrders")]
+        [ResponseType(typeof(ApiResponse))]
+        public HttpResponseMessage GetShipmentsAndRepairsOrders()
+        {
+            try
+            {
+                var result = _iQuantumRepository.GetWarehouseShipmentsAndRepairsOrders();
+
+                if (result == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                ApiResponse responseclass = new ApiResponse(true, "SUCCESS", result);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.OK, responseclass);
+                return response;
+            }
+
+            catch (Exception ex)
+            {
+                ApiResponse responseclass = new ApiResponse(false, ex.Message, null);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.NotFound, responseclass);
+                return response;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetSalesByAirCraftTypeLast3months")]
+        [ResponseType(typeof(ApiResponse))]
+        public HttpResponseMessage GetSalesByAirCraftTypeLast3months()
+        {
+            try
+            {
+                var result = _iQuantumRepository.GetSalesByAirCraftTypeLast3months();
+
+                if (result == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                ApiResponse responseclass = new ApiResponse(true, "SUCCESS", result);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.OK, responseclass);
+                return response;
+            }
+
+            catch (Exception ex)
+            {
+                ApiResponse responseclass = new ApiResponse(false, ex.Message, null);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.NotFound, responseclass);
+                return response;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetSalesByAirCraftTypeLast12months")]
+        [ResponseType(typeof(ApiResponse))]
+        public HttpResponseMessage GetSalesByAirCraftTypeLast12months()
+        {
+            try
+            {
+                var result = _iQuantumRepository.GetSalesByAirCraftTypeLast12months();
+
+                if (result == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                ApiResponse responseclass = new ApiResponse(true, "SUCCESS", result);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.OK, responseclass);
+                return response;
+            }
+
+            catch (Exception ex)
+            {
+                ApiResponse responseclass = new ApiResponse(false, ex.Message, null);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.NotFound, responseclass);
+                return response;
+            }
+        }
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetRepairOrders")]
+        [ResponseType(typeof(ApiResponse))]
+        public HttpResponseMessage GetRepairOrders()
+        {
+            try
+            {
+                var result = _iQuantumRepository.GetRepairOrders();
+
+                if (result == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                ApiResponse responseclass = new ApiResponse(true, "SUCCESS", result);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.OK, responseclass);
+                return response;
+            }
+
+            catch (Exception ex)
+            {
+                ApiResponse responseclass = new ApiResponse(false, ex.Message, null);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.NotFound, responseclass);
+                return response;
+            }
+        }
+
+
     }
 }

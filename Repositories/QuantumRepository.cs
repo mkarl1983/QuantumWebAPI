@@ -99,6 +99,52 @@ namespace QuantumWebAPI.Repositories
                                     SalesPerson = (f.SO_HEADER != null) ? f.SO_HEADER.SYS_USERS1.USER_NAME : (f.PO_HEADER != null) ? f.PO_HEADER.SYS_USERS.USER_NAME : (f.RO_HEADER != null) ? f.RO_HEADER.SYS_USERS.USER_NAME : ""
                                 };
                     resultData = query.ToList();
+
+                }
+
+                // process shipping status for UI
+                if (resultData.Any())
+                {
+                    foreach (var shipping in resultData)
+                    {
+                        //Needs Pick: 
+                        //NEEDS PICK
+
+                        //In Process:
+                        //ALL STARTED#  statuses
+                        //Docs
+                        //DG Note
+                        //Repair Doc
+                        //PN Labels
+                        //Core Retrn
+
+                        //A/W Collection:
+                        //A/W Collection
+                        //Lockbox 1
+                        //Lockbox 2
+                        //Lockbox 3
+                        //Lockbox 4
+
+                        if (shipping.Status.ToUpper().StartsWith("STARTED")) shipping.Status = "IN PROCESS";
+                        if (shipping.Status.ToUpper().StartsWith("LOCKBOX")) shipping.Status = "A/W COLLEC";
+                        switch (shipping.Status.ToUpper())
+                        {
+                            case "DOCS":
+                            case "DG NOTE":
+                            case "REPAIR DOC":
+                            case "PN LABELS":
+                            case "CORE RETRN":
+                                shipping.Status = "IN PROCESS";
+                                break;
+                        }
+                        switch (shipping.Priority)
+                        {
+                            case 0: shipping.PriorityType = "ROUTINE"; break;
+                            case 1: shipping.PriorityType = "CRITICAL"; break;
+                            case 2: shipping.PriorityType = "AOG"; break;
+                            default: shipping.PriorityType = "DEFAULT"; break;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1433,11 +1479,8 @@ namespace QuantumWebAPI.Repositories
                          // AS DISCUSSED RO_UDF_003 RO APPROVED DATE
                         UDF003 = rsdetail.RoDetail.RO_UDF_003
                     }).ToList();
-                    ;
-
                     resultData = tt;
                 }
-
             }
             catch (Exception ex)
             {
