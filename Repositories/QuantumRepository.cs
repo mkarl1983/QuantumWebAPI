@@ -126,7 +126,7 @@ namespace QuantumWebAPI.Repositories
                         //Lockbox 4
 
                         if (shipping.Status.ToUpper().StartsWith("STARTED")) shipping.Status = "IN PROCESS";
-                        if (shipping.Status.ToUpper().StartsWith("LOCKBOX")) shipping.Status = "A/W COLLEC";
+                        if (shipping.Status.ToUpper().StartsWith("LOCKBOX")) shipping.Status = "A/W COLLECTION";
                         switch (shipping.Status.ToUpper())
                         {
                             case "DOCS":
