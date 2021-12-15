@@ -938,7 +938,7 @@ namespace QuantumWebAPI.Repositories
                                    TotalSalesUnitPrice = grp.Sum(o => o.TotalAmount)
                                };
 
-                    resultData = temp.OrderByDescending(o => o.SalesCount).ToList();
+                    resultData = temp.OrderByDescending(o => o.TotalSalesUnitPrice).ToList();
                 }
 
             }
@@ -990,7 +990,7 @@ namespace QuantumWebAPI.Repositories
                                    TotalSalesUnitPrice = grp.Sum(o => o.TotalAmount)
                                };
 
-                    resultData = temp.OrderByDescending(o => o.SalesCount).ToList();
+                    resultData = temp.OrderByDescending(o => o.TotalSalesUnitPrice).ToList();
                 }
             }
             catch (Exception ex)
