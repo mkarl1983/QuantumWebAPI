@@ -456,10 +456,13 @@ namespace QuantumWebAPI.Repositories
                                 where (orderdetail.SO_HEADER.DATE_CREATED.Value >= _startDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= _endDate)
                                 select new
                                 {
-                                    SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
+                                    // SalesAmount = (orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0))
+                                    SalesAmount = (orderdetail != null && orderdetail.QTY_ORDERED.HasValue ? orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0) : 0)
 
                                 };
-                    var salesytdtotal = query.Sum(o => o.SalesAmount);
+                    var list = query.ToList();
+
+                    var salesytdtotal = list.Count() > 0 ? query.Sum(o => o.SalesAmount) : 0;
                     if (salesytdtotal > 0)
                         resultData = Math.Round(salesytdtotal, 0);
                     else resultData = 0;
@@ -467,6 +470,8 @@ namespace QuantumWebAPI.Repositories
             }
             catch (Exception ex)
             {
+                // if error just return 0 so that ui wont break;
+                return 0;
                 throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
             }
 
