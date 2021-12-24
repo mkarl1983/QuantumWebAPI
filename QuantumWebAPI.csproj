@@ -160,6 +160,8 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SQL Queries\AS2_PO_REPAIRS.sql" />
+    <Content Include="SQL Queries\AS2_RO_ACTIVITY.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
