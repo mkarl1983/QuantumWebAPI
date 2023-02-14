@@ -26,8 +26,9 @@ namespace QuantumWebAPI
 
 
             // Enable CORS for the Angular App
-           // var cors = new EnableCorsAttribute("https://skywarp.aerospheres.local:4200", "*", "*");
-            var cors = new EnableCorsAttribute("https://sentryappsrv01.sa2k.local:4200", "*", "*");
+            // var cors = new EnableCorsAttribute("https://skywarp.aerospheres.local:4200", "*", "*");
+            var CorsOriginsUrls = System.Configuration.ConfigurationManager.AppSettings.GetValues("CorsOriginsUrls").FirstOrDefault();
+            var cors = new EnableCorsAttribute(CorsOriginsUrls, "*", "*");
             config.EnableCors(cors);
 
 
