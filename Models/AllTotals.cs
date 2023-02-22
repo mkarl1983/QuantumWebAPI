@@ -110,10 +110,14 @@ namespace QuantumWebAPI.Models
         public const string RO_UK = "ERO";
         public const string RO_UK_Old = "R";
         public const string RO_USA = "ARO";
+        public const string RO_USA_BRO = "BRO";
+        public const string RO_UK_FRO = "FRO";
 
         public const string SO_UK = "ESO";
         public const string SO_UK_Old = "S";
         public const string SO_USA = "ASO";
+        public const string SO_USA_BSO = "BSO";
+        public const string SO_UK_FSO = "FSO";
 
         public const string PO_UK = "EPO";
         public const string PO_UK_Old = "P";
@@ -122,9 +126,13 @@ namespace QuantumWebAPI.Models
         public const string INV_UK = "EIN";
         public const string INV_UK_Old = "IN";
         public const string INV_USA = "AIN";
+        public const string INV_USA_BIN = "BIN";
+        public const string INV_UK_FIN = "FIN";
+
 
         public const string CQ_UK = "EQ";
         public const string CQ_UK_Old = "Q";
+        public const string CQ_UK_UKQ = "UKQ";
         public const string CQ_USA = "AQ";
 
     }
