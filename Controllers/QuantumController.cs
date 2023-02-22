@@ -584,5 +584,39 @@ namespace QuantumWebAPI.Controllers
         }
 
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetSalesOrderTotals_Old")]
+        [ResponseType(typeof(ApiResponse))]
+        public HttpResponseMessage GetSalesOrderTotals_Old()
+        {
+            try
+            {
+                var result = _iQuantumRepository.GetSalesOrderTotals_Old();
+
+                if (result == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                ApiResponse responseclass = new ApiResponse(true, "SUCCESS", result);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.OK, responseclass);
+                return response;
+            }
+
+            catch (Exception ex)
+            {
+                ApiResponse responseclass = new ApiResponse(false, ex.Message, null);
+                HttpResponseMessage response = Request.CreateResponse<ApiResponse>(HttpStatusCode.NotFound, responseclass);
+                return response;
+            }
+        }
+
+
     }
 }

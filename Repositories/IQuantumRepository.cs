@@ -96,6 +96,12 @@ namespace QuantumWebAPI.Repositories
         /// <returns></returns>
         public AllTotals GetSalesOrderTotals();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetSalesOrderTotals_Old();
+
         #endregion
 
         #region Quotes 
@@ -213,6 +219,12 @@ namespace QuantumWebAPI.Repositories
         /// <returns></returns>
         public AllTotals GetInvoiceTotals();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetInvoiceTotals_Old();
+
         #endregion
 
         #region Purchase Order Totals
@@ -248,6 +260,12 @@ namespace QuantumWebAPI.Repositories
         /// </summary>
         /// <returns></returns>
         public AllTotals GetPurchaseOrderTotals();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetPurchaseOrderTotals_Old();
 
         #endregion
 
@@ -295,6 +313,12 @@ namespace QuantumWebAPI.Repositories
         /// </summary>
         /// <returns></returns>
         public AllTotals GetRepairOrderTotals();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public AllTotals GetRepairOrderTotals_Old();
 
         #endregion
 

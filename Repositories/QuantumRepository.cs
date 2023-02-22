@@ -1,7 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using QuantumWebAPI.Models;
 using QuntumDB.QuantumModel;
 
@@ -482,7 +484,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public AllRatioTotals GetSaleOrderToQuoteRatios()
+        public AllRatioTotals GetSaleOrderToQuoteRatios_Old()
         {
             AllRatioTotals resultData;
             const string MethodName = "GetSaleOrderToQuoteRatios()";
@@ -524,7 +526,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public AllTotals GetSalesOrderTotals()
+        public AllTotals GetSalesOrderTotals_Old()
         {
             AllTotals resultData;
             const string MethodName = "GetSalesOrderTotals()";
@@ -1008,7 +1010,7 @@ namespace QuantumWebAPI.Repositories
 
         #endregion
 
-        #region  Invoice Order Totals
+        #region  Invoice Totals
 
         /// <summary>
         /// 
@@ -1209,7 +1211,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public AllTotals GetInvoiceTotals()
+        public AllTotals GetInvoiceTotals_Old()
         {
             AllTotals resultData;
             const string MethodName = "GetInvoiceTotals()";
@@ -1421,7 +1423,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public AllTotals GetPurchaseOrderTotals()
+        public AllTotals GetPurchaseOrderTotals_Old()
         {
             AllTotals resultData;
             const string MethodName = "GetPurchaseOrderTotals()";
@@ -1502,10 +1504,13 @@ namespace QuantumWebAPI.Repositories
         public decimal GetRepairOrderTodayTotals()
         {
             decimal resultData;
-            const string MethodName = "GetPurchaseOrderTodayTotals()";
+            const string MethodName = "GetRepairOrderTodayTotals()";
             try
             {
                 DateTime TodayDate = DateTime.Now;
+
+
+
                 using (QuantumEntities dc = new QuantumEntities())
                 {
                     var query = from ro in dc.RO_HEADER
@@ -1682,7 +1687,7 @@ namespace QuantumWebAPI.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public AllTotals GetRepairOrderTotals()
+        public AllTotals GetRepairOrderTotals_Old()
         {
             AllTotals resultData;
             const string MethodName = "GetRepairOrderTotals()";
@@ -1696,7 +1701,23 @@ namespace QuantumWebAPI.Repositories
                 decimal QTDRO = GetRepairOrderQTDTotals();
                 decimal LTMRO = GetRepairOrderLTMTotals();
 
-                resultData = new AllTotals() { TodayTotals = TodayRO, MTDTotals = MTDRO, YTDTotals = YTDRO, QTDTotals = QTDRO, LTMTotals = LTMRO };
+                decimal TodayRO_UK = GetRepairOrderTodayTotals();
+                decimal MTDRO_UK = GetRepairOrderMTDTotals();
+                decimal YTDRO_UK = GetRepairOrderYTDTotals();
+                decimal QTDRO_UK = GetRepairOrderQTDTotals();
+                decimal LTMRO_UK = GetRepairOrderLTMTotals();
+
+                decimal TodayRO_USA = GetRepairOrderTodayTotals();
+                decimal MTDRO_USA = GetRepairOrderMTDTotals();
+                decimal YTDRO_USA = GetRepairOrderYTDTotals();
+                decimal QTDRO_USA = GetRepairOrderQTDTotals();
+                decimal LTMRO_USA = GetRepairOrderLTMTotals();
+
+
+
+                resultData = new AllTotals() { TodayTotals = TodayRO, MTDTotals = MTDRO, YTDTotals = YTDRO, QTDTotals = QTDRO, LTMTotals = LTMRO
+                 ,TodayTotals_UK = TodayRO_UK, MTDTotals_UK = MTDRO_UK, YTDTotals_UK = YTDRO_UK, QTDTotals_UK = QTDRO_UK, LTMTotals_UK = LTMRO_UK
+                 ,TodayTotals_USA = TodayRO_USA, MTDTotals_USA = MTDRO_USA, YTDTotals_USA = YTDRO_USA, QTDTotals_USA = QTDRO_USA, LTMTotals_USA = LTMRO_USA};
             }
             catch (Exception ex)
             {
@@ -2031,5 +2052,354 @@ namespace QuantumWebAPI.Repositories
         //}
 
         #endregion
+
+        public AllTotals GetRepairOrderTotals()
+        {
+            AllTotals resultData = new AllTotals();
+            const string MethodName = "GetRepairOrderTotals()";
+            try
+            {
+                DateTime StartDate = Last12MonthsDate(DateTime.Now);
+                DateTime TodayDate = DateTime.Now;
+                var queryResult = new List<TotalsModel>();
+
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+
+                    var query = from ro in dc.RO_HEADER
+                                where (ro.ENTRY_DATE >= StartDate && ro.ENTRY_DATE <= TodayDate)
+                                select new TotalsModel
+                                {
+                                      Total = ro.TOTAL_COST.HasValue ? ro.TOTAL_COST.Value : 0
+                                    , SerialNumber = ro.RO_NUMBER
+                                    , QueryDate = ro.ENTRY_DATE
+                                };
+
+                    queryResult = query.ToList();
+                }
+                if(queryResult.Any())
+                {
+                    // WriteCSV(queryResult, @"C:\dev\RepairOrderTotals.csv");
+
+                    resultData.TodayTotals = Math.Round(queryResult.Where(o => o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0 );
+                    resultData.MTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals = Math.Round(queryResult.Where(o => o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_UK = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_UK) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_UK = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_UK) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.RO_UK) || o.SerialNumber.StartsWith(CommonConstants.RO_UK_Old)) && (o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.RO_UK) || o.SerialNumber.StartsWith(CommonConstants.RO_UK_Old)) && (o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.RO_UK) || o.SerialNumber.StartsWith(CommonConstants.RO_UK_Old)) && (o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_USA) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month  && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_USA) && o.QueryDate >= FirstDayOfMonth(DateTime.Now)  && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_USA) && o.QueryDate >= YTDDate(DateTime.Now)  && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_USA) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now)  && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.RO_USA) && o.QueryDate >= Last12MonthsDate(DateTime.Now)  && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        public AllTotals GetPurchaseOrderTotals()
+        {
+            AllTotals resultData = new AllTotals();
+            const string MethodName = "GetPurchaseOrderTotals()";
+            try
+            {
+                DateTime StartDate = Last12MonthsDate(DateTime.Now);
+                DateTime TodayDate = DateTime.Now;
+                var queryResult = new List<TotalsModel>();
+
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+
+                    var query = from po in dc.PO_HEADER
+                                where (po.ENTRY_DATE >= StartDate && po.ENTRY_DATE <= TodayDate)
+                                select new TotalsModel
+                                {
+                                      Total = po.TOTAL_COST.HasValue ? po.TOTAL_COST.Value : 0
+                                    , SerialNumber = po.PO_NUMBER
+                                    , QueryDate = po.ENTRY_DATE
+                                };
+
+                    queryResult = query.ToList();
+
+                }
+                if (queryResult.Any())
+                {
+                    //WriteCSV(queryResult, @"C:\dev\PurchaseOrderTotals.csv");
+
+                    resultData.TodayTotals = Math.Round(queryResult.Where(o => o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals = Math.Round(queryResult.Where(o => o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_UK = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_UK) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_UK = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_UK) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.PO_UK) || o.SerialNumber.StartsWith(CommonConstants.PO_UK_Old)) && (o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.PO_UK) || o.SerialNumber.StartsWith(CommonConstants.PO_UK_Old)) && (o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.PO_UK) || o.SerialNumber.StartsWith(CommonConstants.PO_UK_Old)) && (o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_USA) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_USA) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_USA) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_USA) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.PO_USA) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        public AllTotals GetInvoiceTotals()
+        {
+            AllTotals resultData = new AllTotals();
+            const string MethodName = "GetInvoiceTotals()";
+            try
+            {
+                DateTime StartDate = Last12MonthsDate(DateTime.Now);
+                DateTime TodayDate = DateTime.Now;
+                var queryResult = new List<TotalsModel>();
+
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+
+
+                    var query = from invoiceheader in dc.INVC_HEADER where ( invoiceheader.INVOICE_DATE >= StartDate && invoiceheader.INVOICE_DATE <= TodayDate  && invoiceheader.POST_STATUS == 3 && (invoiceheader.INVC_TYPE == "I" || invoiceheader.INVC_TYPE == "M"))
+                                select new TotalsModel
+                                {
+                                     Total = invoiceheader.FOREIGN_AMOUNT.HasValue ? invoiceheader.FOREIGN_AMOUNT.Value : 0
+                                    , SerialNumber = invoiceheader.INVC_NUMBER
+                                    , QueryDate = invoiceheader.INVOICE_DATE
+                                };
+                    queryResult = query.ToList();
+
+                }
+                if (queryResult.Any())
+                {
+                   // WriteCSV(queryResult, @"C:\dev\InvoiceTotals.csv");
+
+                    resultData.TodayTotals = Math.Round(queryResult.Where(o => o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals = Math.Round(queryResult.Where(o => o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_UK = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_UK) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_UK = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_UK) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.INV_UK) || o.SerialNumber.StartsWith(CommonConstants.INV_UK_Old)) && (o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.INV_UK) || o.SerialNumber.StartsWith(CommonConstants.INV_UK_Old)) && (o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.INV_UK) || o.SerialNumber.StartsWith(CommonConstants.INV_UK_Old)) && (o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_USA) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_USA) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_USA) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_USA) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.INV_USA) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        public AllTotals GetSalesOrderTotals()
+        {
+            AllTotals resultData = new AllTotals();
+            const string MethodName = "GetSalesOrderTotals()";
+            try
+            {
+                DateTime StartDate = Last12MonthsDate(DateTime.Now);
+                DateTime TodayDate = DateTime.Now;
+                var queryResult = new List<TotalsModel>();
+
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+
+                    var query = from orderdetail in dc.SO_DETAIL
+                                where (orderdetail.SO_HEADER.DATE_CREATED.Value >= StartDate && orderdetail.SO_HEADER.DATE_CREATED.Value <= TodayDate)
+                                select new TotalsModel
+                                {
+                                      Total = (orderdetail != null && orderdetail.QTY_ORDERED.HasValue ? orderdetail.QTY_ORDERED.Value * (orderdetail.CUSTOMER_PRICE.HasValue ? orderdetail.CUSTOMER_PRICE.Value : 0) : 0)
+                                    , SerialNumber = orderdetail.SO_HEADER.SO_NUMBER
+                                    , QueryDate = orderdetail.SO_HEADER.DATE_CREATED.Value
+
+                                };
+                    queryResult = query.ToList();
+                }
+                if (queryResult.Any())
+                {
+                   // WriteCSV(queryResult, @"C:\dev\SalesOrderTotals.csv");
+
+                    resultData.TodayTotals = Math.Round(queryResult.Where(o => o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals = Math.Round(queryResult.Where(o => o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals = Math.Round(queryResult.Where(o => o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith(CommonConstants.SO_UK_Old)   || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && (o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith(CommonConstants.SO_UK_Old) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && (o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now))).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_UK = Math.Round(queryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith(CommonConstants.SO_UK_Old) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && (o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+
+                    resultData.TodayTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.MTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.YTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.QTDTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Sum(o => o.Total), 0);
+                    resultData.LTMTotals_USA = Math.Round(queryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Sum(o => o.Total), 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        public AllRatioTotals GetSaleOrderToQuoteRatios()
+        {
+            AllRatioTotals resultData = new AllRatioTotals();
+            const string MethodName = "GetSaleOrderToQuoteRatios()";
+            try
+            {
+                DateTime StartDate = Last12MonthsDate(DateTime.Now);
+                DateTime TodayDate = DateTime.Now;
+
+                var salesQueryResult = new List<TotalsModel>();
+                var quotesQueryResult = new List<TotalsModel>();
+
+                using (QuantumEntities dc = new QuantumEntities())
+                {
+                    var salesquery = from salesOrder in dc.SO_HEADER
+                                where (salesOrder.DATE_CREATED.Value >= StartDate && salesOrder.DATE_CREATED.Value <= TodayDate)
+                                select new TotalsModel
+                                {
+                                    Total = 1
+                                 ,  SerialNumber = salesOrder.SO_NUMBER
+                                 ,  QueryDate = salesOrder.DATE_CREATED.Value
+                                };
+                    salesQueryResult = salesquery.ToList();
+
+                    var quotesquery = from quote in dc.CQ_HEADER
+                                     where (quote.DATE_CREATED.Value >= StartDate && quote.DATE_CREATED.Value <= TodayDate)
+                                     select new TotalsModel
+                                     {
+                                         Total = 1
+                                      ,  SerialNumber = quote.CQ_NUMBER
+                                      ,  QueryDate = quote.DATE_CREATED.Value
+                                     };
+                    quotesQueryResult = quotesquery.ToList();
+                }
+                if (salesQueryResult.Any() && quotesQueryResult.Any())
+                {
+                   // WriteCSV(salesQueryResult, @"C:\dev\SalesOrderCount.csv");
+                  //  WriteCSV(quotesQueryResult, @"C:\dev\QuotesCount.csv");
+
+
+                    int TodaySales = salesQueryResult.Where(o => o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Count();
+                    int MTDSales = salesQueryResult.Where(o => o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int YTDSales = salesQueryResult.Where(o => o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int QTDSales = salesQueryResult.Where(o => o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Count();
+                    int LTMSales = salesQueryResult.Where(o => o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Count();
+
+                    int TodayQuotes = quotesQueryResult.Where(o => o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Count();
+                    int MTDQuotes = quotesQueryResult.Where(o => o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int YTDQuotes = quotesQueryResult.Where(o => o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int QTDQuotes = quotesQueryResult.Where(o => o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Count();
+                    int LTMQuotes = quotesQueryResult.Where(o => o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Count();
+
+                    resultData.TodayTotals = (TodaySales > 0 && TodayQuotes > 0) ? Math.Round((((double)TodaySales / TodayQuotes) * 100), 2) : (double)0;
+                    resultData.MTDTotals = (MTDSales > 0 && MTDQuotes > 0) ? Math.Round((((double)MTDSales / MTDQuotes) * 100), 2) : (double)0;
+                    resultData.YTDTotals = (YTDSales > 0 && YTDQuotes > 0) ? Math.Round((((double)YTDSales / YTDQuotes) * 100), 2) : (double)0;
+                    resultData.QTDTotals = (QTDSales > 0 && QTDQuotes > 0) ? Math.Round((((double)QTDSales / QTDQuotes) * 100), 2) : (double)0;
+                    resultData.LTMTotals = (LTMSales > 0 && LTMQuotes > 0) ? Math.Round((((double)LTMSales / LTMQuotes) * 100), 2) : (double)0;
+
+
+
+
+                    int TodaySales_UK = salesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Count();
+                    int MTDSales_UK = salesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int YTDSales_UK = salesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith(CommonConstants.SO_UK_Old) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int QTDSales_UK = salesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith(CommonConstants.SO_UK_Old) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Count();
+                    int LTMSales_UK = salesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.SO_UK) || o.SerialNumber.StartsWith(CommonConstants.SO_UK_Old) || o.SerialNumber.StartsWith("FSO") || o.SerialNumber.StartsWith("BSO")) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Count();
+
+                    int TodayQuotes_UK = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_UK) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Count();
+                    int MTDQuotes_UK = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_UK) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int YTDQuotes_UK = quotesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.CQ_UK) || o.SerialNumber.StartsWith(CommonConstants.CQ_UK_Old)) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int QTDQuotes_UK = quotesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.CQ_UK) || o.SerialNumber.StartsWith(CommonConstants.CQ_UK_Old)) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Count();
+                    int LTMQuotes_UK = quotesQueryResult.Where(o => (o.SerialNumber.StartsWith(CommonConstants.CQ_UK) || o.SerialNumber.StartsWith(CommonConstants.CQ_UK_Old)) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Count();
+
+                    resultData.TodayTotals_UK = (TodaySales_UK > 0 && TodayQuotes_UK > 0) ? Math.Round((((double)TodaySales_UK / TodayQuotes_UK) * 100), 2) : (double)0;
+                    resultData.MTDTotals_UK = (MTDSales_UK > 0 && MTDQuotes_UK > 0) ? Math.Round((((double)MTDSales_UK / MTDQuotes_UK) * 100), 2) : (double)0;
+                    resultData.YTDTotals_UK = (YTDSales_UK > 0 && YTDQuotes_UK > 0) ? Math.Round((((double)YTDSales_UK / YTDQuotes_UK) * 100), 2) : (double)0;
+                    resultData.QTDTotals_UK = (QTDSales_UK > 0 && QTDQuotes_UK > 0) ? Math.Round((((double)QTDSales_UK / QTDQuotes_UK) * 100), 2) : (double)0;
+                    resultData.LTMTotals_UK = (LTMSales_UK > 0 && LTMQuotes_UK > 0) ? Math.Round((((double)LTMSales_UK / LTMQuotes_UK) * 100), 2) : (double)0;
+
+                    int TodaySales_USA = salesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Count();
+                    int MTDSales_USA = salesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int YTDSales_USA = salesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int QTDSales_USA = salesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Count();
+                    int LTMSales_USA = salesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.SO_USA) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Count();
+
+                    int TodayQuotes_USA = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_USA) && o.QueryDate.Day == TodayDate.Day && o.QueryDate.Month == TodayDate.Month && o.QueryDate.Year == TodayDate.Year).Select(o => o).Count();
+                    int MTDQuotes_USA = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_USA) && o.QueryDate >= FirstDayOfMonth(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int YTDQuotes_USA = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_USA) && o.QueryDate >= YTDDate(DateTime.Now) && o.QueryDate <= LastDayOfMonth(DateTime.Now)).Select(o => o).Count();
+                    int QTDQuotes_USA = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_USA) && o.QueryDate >= GetQuarterStartingDate(DateTime.Now) && o.QueryDate <= GetQuarterEndDate(DateTime.Now)).Select(o => o).Count();
+                    int LTMQuotes_USA = quotesQueryResult.Where(o => o.SerialNumber.StartsWith(CommonConstants.CQ_USA) && o.QueryDate >= Last12MonthsDate(DateTime.Now) && o.QueryDate <= DateTime.Now).Select(o => o).Count();
+
+                    resultData.TodayTotals_USA = (TodaySales_USA > 0 && TodayQuotes_USA > 0) ? Math.Round((((double)TodaySales_USA / TodayQuotes_USA) * 100), 2) : (double)0;
+                    resultData.MTDTotals_USA = (MTDSales_USA > 0 && MTDQuotes_USA > 0) ? Math.Round((((double)MTDSales_USA / MTDQuotes_USA) * 100), 2) : (double)0;
+                    resultData.YTDTotals_USA = (YTDSales_USA > 0 && YTDQuotes_USA > 0) ? Math.Round((((double)YTDSales_USA / YTDQuotes_USA) * 100), 2) : (double)0;
+                    resultData.QTDTotals_USA = (QTDSales_USA > 0 && QTDQuotes_USA > 0) ? Math.Round((((double)QTDSales_USA / QTDQuotes_USA) * 100), 2) : (double)0;
+                    resultData.LTMTotals_USA = (LTMSales_USA > 0 && LTMQuotes_USA > 0) ? Math.Round((((double)LTMSales_USA / LTMQuotes_USA) * 100), 2) : (double)0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(CLASSID + ":" + MethodName + " " + ex.Message);
+            }
+
+            return resultData;
+        }
+
+        public void WriteCSV<T>(IEnumerable<T> items, string path)
+        {
+            Type itemType = typeof(T);
+            var props = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                                .OrderBy(p => p.Name);
+
+            using (var writer = new StreamWriter(path))
+            {
+                writer.WriteLine(string.Join(", ", props.Select(p => p.Name)));
+
+                foreach (var item in items)
+                {
+                    writer.WriteLine(string.Join(", ", props.Select(p => p.GetValue(item, null))));
+                }
+            }
+        }
+
     }
 }
