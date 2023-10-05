@@ -50,6 +50,9 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -137,6 +140,916 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\QuantumController.cs" />
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS PAYABLE.cs">
+      <DependentUpon>ACCOUNTS PAYABLE.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS PAYABLE1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS PAYABLE2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS RECEIVABLE.cs">
+      <DependentUpon>ACCOUNTS RECEIVABLE.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS RECEIVABLE1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS RECEIVABLE2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT - INCLUDING CORE EXPOSURE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT - INCLUDING CORE EXPOSURE1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT - INCLUDING CORE EXPOSURE2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT - INCLUDING CORE EXPOSURE3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AGED LISTING REPORT - INCLUDING CORE EXPOSURE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AGED LISTING REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED RECEIVABLES REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED RECEIVABLES REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED RECEIVABLES REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\AGED RECEIVABLES REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AGED RECEIVABLES REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\BROKERED SALES SUMMARY REPORT %28KPI%29.cs">
+      <DependentUpon>BROKERED SALES SUMMARY REPORT %28KPI%29.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\BROKERED SALES SUMMARY REPORT %28KPI%291.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\BROKERED SALES SUMMARY REPORT %28KPI%292.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\COMPANIES CREDIT LIMIT &amp; COFACE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\COMPANIES CREDIT LIMIT &amp; COFACE1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\COMPANIES CREDIT LIMIT &amp; COFACE2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\COMPANIES CREDIT LIMIT &amp; COFACE3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COMPANIES CREDIT LIMIT &amp; COFACE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\CORE EXPOSURE BY CUSTOMER.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\CORE EXPOSURE BY CUSTOMER1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\CORE EXPOSURE BY CUSTOMER2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\CORE EXPOSURE BY CUSTOMER3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CORE EXPOSURE BY CUSTOMER.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\DEBTOR AND CREDIT REPORT %28AR and AP%29.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\DEBTOR AND CREDIT REPORT %28AR and AP%291.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\DEBTOR AND CREDIT REPORT %28AR and AP%292.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\DEBTOR AND CREDIT REPORT %28AR and AP%293.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DEBTOR AND CREDIT REPORT %28AR and AP%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\EXCHANGE LEADING INDICATOR %28KPI%29.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\EXCHANGE LEADING INDICATOR %28KPI%291.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\EXCHANGE LEADING INDICATOR %28KPI%292.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\EXCHANGE LEADING INDICATOR %28KPI%293.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EXCHANGE LEADING INDICATOR %28KPI%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\INTRASTAT.cs">
+      <DependentUpon>INTRASTAT.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\INTRASTAT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\INTRASTAT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PO AND RO SPEND BY PART NUMBER.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PO AND RO SPEND BY PART NUMBER1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PO AND RO SPEND BY PART NUMBER2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PO AND RO SPEND BY PART NUMBER3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PO AND RO SPEND BY PART NUMBER.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PURCHASES FROM EU.cs">
+      <DependentUpon>PURCHASES FROM EU.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PURCHASES FROM EU1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\PURCHASES FROM EU2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\STOCK COST ADJUSTMENT REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\STOCK COST ADJUSTMENT REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\STOCK COST ADJUSTMENT REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\STOCK COST ADJUSTMENT REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STOCK COST ADJUSTMENT REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\VENDOR PO AND RO SPEND.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\VENDOR PO AND RO SPEND1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\VENDOR PO AND RO SPEND2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\VENDOR PO AND RO SPEND3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VENDOR PO AND RO SPEND.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\YOY SALES.cs">
+      <DependentUpon>YOY SALES.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\YOY SALES1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ACCOUNTS\YOY SALES2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\ANNUAL FIRE EXTIGUISHER HALON REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\ANNUAL FIRE EXTIGUISHER HALON REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\ANNUAL FIRE EXTIGUISHER HALON REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\ANNUAL FIRE EXTIGUISHER HALON REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ANNUAL FIRE EXTIGUISHER HALON REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\RWW LOCATION CHANGE SQL\RWW LOCATION CHANGE SQL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\RWW LOCATION CHANGE SQL\RWW LOCATION CHANGE SQL1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\RWW LOCATION CHANGE SQL\RWW LOCATION CHANGE SQL2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\RWW LOCATION CHANGE SQL\RWW LOCATION CHANGE SQL3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RWW LOCATION CHANGE SQL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\SIGNATURE SETUP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\SIGNATURE SETUP1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\SIGNATURE SETUP2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 ADMIN\SIGNATURE SETUP3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIGNATURE SETUP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 COMMISSION\AGENT COMMISSIONS REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\AGENT COMMISSIONS REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\AGENT COMMISSIONS REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\AGENT COMMISSIONS REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AGENT COMMISSIONS REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED COMMISSION REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED COMMISSION REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED COMMISSION REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED COMMISSION REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BROKERED COMMISSION REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED EXCHANGE REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED EXCHANGE REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED EXCHANGE REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\BROKERED EXCHANGE REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BROKERED EXCHANGE REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 COMMISSION\SALES COMMISSION REPORT.cs">
+      <DependentUpon>SALES COMMISSION REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 COMMISSION\SALES COMMISSION REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 COMMISSION\SALES COMMISSION REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HAZARDOUS PART REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HAZARDOUS PART REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HAZARDOUS PART REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HAZARDOUS PART REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HAZARDOUS PART REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%29.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%291.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%292.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%293.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%29.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HISTORICAL AND CURRENT STOCK.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\OPEN RECEIVING REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\OPEN RECEIVING REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\OPEN RECEIVING REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\OPEN RECEIVING REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPEN RECEIVING REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\SHELF LIFE REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\SHELF LIFE REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\SHELF LIFE REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\SHELF LIFE REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SHELF LIFE REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK AVAILABLE BY AIRCRAFT TYPE.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK AVAILABLE BY AIRCRAFT TYPE1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK AVAILABLE BY AIRCRAFT TYPE2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK AVAILABLE BY AIRCRAFT TYPE3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STOCK AVAILABLE BY AIRCRAFT TYPE.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK CHECK REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK CHECK REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK CHECK REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK CHECK REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STOCK CHECK REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK INVENTORY REPORT.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK INVENTORY REPORT1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK INVENTORY REPORT2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\STOCK INVENTORY REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STOCK INVENTORY REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 INVENTORY\TRANSACTION HISTORY FOR ALL PARTS BY TAG.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\TRANSACTION HISTORY FOR ALL PARTS BY TAG1.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\TRANSACTION HISTORY FOR ALL PARTS BY TAG2.cs" />
+    <Compile Include="CrystalReports\A2000 INVENTORY\TRANSACTION HISTORY FOR ALL PARTS BY TAG3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TRANSACTION HISTORY FOR ALL PARTS BY TAG.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\CORE DUE BACK TO VENDOR REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\CORE DUE BACK TO VENDOR REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\CORE DUE BACK TO VENDOR REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\CORE DUE BACK TO VENDOR REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CORE DUE BACK TO VENDOR REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\DAILY STOCK PURCHASES REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\DAILY STOCK PURCHASES REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\DAILY STOCK PURCHASES REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\DAILY STOCK PURCHASES REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAILY STOCK PURCHASES REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\LATE PO REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\LATE PO REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\LATE PO REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\LATE PO REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LATE PO REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\MOQ RE-ORDER REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\MOQ RE-ORDER REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\MOQ RE-ORDER REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\MOQ RE-ORDER REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOQ RE-ORDER REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PO CORE RECHARGE REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PO CORE RECHARGE REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PO CORE RECHARGE REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PO CORE RECHARGE REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPEN PO CORE RECHARGE REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PURCHASE ORDERS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PURCHASE ORDERS1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PURCHASE ORDERS2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\OPEN PURCHASE ORDERS3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPEN PURCHASE ORDERS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO RANKING REPORT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO RANKING REPORT1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO RANKING REPORT2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO RANKING REPORT3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PO RANKING REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO SUMMARY BY VENDOR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO SUMMARY BY VENDOR1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO SUMMARY BY VENDOR2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PO SUMMARY BY VENDOR3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PO SUMMARY BY VENDOR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASE ORDERS BY VENDORS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASE ORDERS BY VENDORS1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASE ORDERS BY VENDORS2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASE ORDERS BY VENDORS3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PURCHASE ORDERS BY VENDORS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASING TOTAL VALUES BY EMPLOYEE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASING TOTAL VALUES BY EMPLOYEE1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASING TOTAL VALUES BY EMPLOYEE2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\PURCHASING TOTAL VALUES BY EMPLOYEE3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PURCHASING TOTAL VALUES BY EMPLOYEE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\RETURNS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\RETURNS1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\RETURNS2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\RETURNS3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RETURNS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\VENDOR QUOTES.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\VENDOR QUOTES1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\VENDOR QUOTES2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 PURCHASES\VENDOR QUOTES3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VENDOR QUOTES.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 QUOTES\CQTOSOYTD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQTOSOYTD.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 QUOTES\CUSTOMER QUOTE TO SALES ANALYSIS BY EMPLOYEE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CUSTOMER QUOTE TO SALES ANALYSIS BY EMPLOYEE.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 QUOTES\NO QUOTES.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NO QUOTES.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 QUOTES\QUOTES TO SALES ORDERS RATIO REPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QUOTES TO SALES ORDERS RATIO REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\OPEN REPAIR ORDER REPORT - MAIN ONE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPEN REPAIR ORDER REPORT - MAIN ONE.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\OPEN RO REPORT V2 %28WITH COSTS%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPEN RO REPORT V2 %28WITH COSTS%29.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\REPAIR ORDER STOCK POSITION.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>REPAIR ORDER STOCK POSITION.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\REPAIR ORDERS BY VENDORS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>REPAIR ORDERS BY VENDORS.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\RO PIECE PARTS RESERVED.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RO PIECE PARTS RESERVED.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\RO RANKING REPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RO RANKING REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 REPAIRS\WARRANTY REPAIR REPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WARRANTY REPAIR REPORT.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\AVERAGE SALES REPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AVERAGE SALES REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\INVOICE BY CUSTOMER.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>INVOICE BY CUSTOMER.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\OPEN SALES ORDERS TO SHIP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPEN SALES ORDERS TO SHIP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\PARTS SSP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PARTS SSP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\Purchase Orders by Vendors.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Purchase Orders by Vendors.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\REVENUE ANALYSIS REPORT BY GROUP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>REVENUE ANALYSIS REPORT BY GROUP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\REVENUE BY SALES TYPE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>REVENUE BY SALES TYPE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALE ORDERS BY CUSTOMER AND GROUP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALE ORDERS BY CUSTOMER AND GROUP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALE ORDERS BY CUSTOMER AND MFG.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALE ORDERS BY CUSTOMER AND MFG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALES AND EXCHANGE ANALYSIS BY CUSTOMER.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALES AND EXCHANGE ANALYSIS BY CUSTOMER.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALES BY AIRCRAFT TYPE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALES BY AIRCRAFT TYPE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALES BY CUSTOMER TYPE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALES BY CUSTOMER TYPE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALES RANKING REPORT %28BY COUNTRY SHIPPED TO%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALES RANKING REPORT %28BY COUNTRY SHIPPED TO%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALES RANKING REPORT %28BY COUNTRY%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALES RANKING REPORT %28BY COUNTRY%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\SALES RANKING REPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SALES RANKING REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\TOP PN PROFIT MARGIN FOR OUTRIGHT TRANSACTIONS ONLY.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOP PN PROFIT MARGIN FOR OUTRIGHT TRANSACTIONS ONLY.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\TOP PN SALES FOR EXCHANGE TRANSACTIONS ONLY.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOP PN SALES FOR EXCHANGE TRANSACTIONS ONLY.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\A2000 SALES\TOP PN SALES FOR OUTRIGHT TRANSACTIONS ONLY.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOP PN SALES FOR OUTRIGHT TRANSACTIONS ONLY.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\104.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>104.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\222.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>222.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\266.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>266.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\272.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>272.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\273.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>273.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\28.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>28.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>29.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\30.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>30.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\31.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>31.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\32.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>32.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\320.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>320.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\323.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>323.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\324.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>324.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\341.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>341.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\422.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>422.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Emgr\Reports\423.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>423.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\IntrastatByAccountCompany.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntrastatByAccountCompany.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Murali_Revenue_By_Sales_Type_By_Acct_Company.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Murali_Revenue_By_Sales_Type_By_Acct_Company.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\PER CUSTOMER OPEN CORE REPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PER CUSTOMER OPEN CORE REPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\PER CUSTOMER OPEN CORE REPORT_Murali_Backup25Oct2022.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PER CUSTOMER OPEN CORE REPORT_Murali_Backup25Oct2022.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum CONSIGNMENT_ Sales_INCLUDING_NONSTOCK_MURALI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum CONSIGNMENT_ Sales_INCLUDING_NONSTOCK_MURALI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum CONSIGNMENT_ Sales_MURALI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum CONSIGNMENT_ Sales_MURALI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Consignor Inventory_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Consignor Inventory_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Intrastat Report_MURALI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Intrastat Report_MURALI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Open Customer Core Report_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Open Customer Core Report_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Open Purchase Orders Report_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Open Purchase Orders Report_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Open Repair Orders Report_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Open Repair Orders Report_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Outstanding Core Repair 2012 Report_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Outstanding Core Repair 2012 Report_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Per Customer Open Core _Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Per Customer Open Core _Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Purchase Day Book_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Purchase Day Book_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Sales Report Per Customer_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Sales Report Per Customer_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Quantum Sales Report_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quantum Sales Report_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReports\Murali Reports\Temp Quantum Purchase Day Book_Murali.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Temp Quantum Purchase Day Book_Murali.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,16 +1087,454 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CrystalReports\Murali Reports\Agentcomm_31oct18to27dec18.xls" />
+    <Content Include="CrystalReports\A2000 ADMIN\RWW LOCATION CHANGE SQL\Database.xlsx" />
+    <Content Include="CrystalReports\Emgr\Reports\375670" />
+    <Content Include="CrystalReports\Emgr\Reports\376322" />
+    <Content Include="CrystalReports\Emgr\Reports\376329" />
+    <Content Include="CrystalReports\Emgr\Reports\378617" />
+    <Content Include="CrystalReports\Emgr\Reports\378651" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="QuntumDB\QuntumDB.csproj">
       <Project>{c5aced47-ae75-49e4-84f5-0d714964c372}</Project>
       <Name>QuntumDB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS PAYABLE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ACCOUNTS PAYABLE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\ACCOUNTS RECEIVABLE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ACCOUNTS RECEIVABLE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT - INCLUDING CORE EXPOSURE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AGED LISTING REPORT - INCLUDING CORE EXPOSURE3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\AGED LISTING REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AGED LISTING REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\AGED RECEIVABLES REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AGED RECEIVABLES REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\BROKERED SALES SUMMARY REPORT %28KPI%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BROKERED SALES SUMMARY REPORT %28KPI%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\COMPANIES CREDIT LIMIT &amp; COFACE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>COMPANIES CREDIT LIMIT &amp; COFACE3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\CORE EXPOSURE BY CUSTOMER.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CORE EXPOSURE BY CUSTOMER3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\DEBTOR AND CREDIT REPORT %28AR and AP%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DEBTOR AND CREDIT REPORT %28AR and AP%293.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\EXCHANGE LEADING INDICATOR %28KPI%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EXCHANGE LEADING INDICATOR %28KPI%293.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\INTRASTAT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>INTRASTAT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\PO AND RO SPEND BY PART NUMBER.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PO AND RO SPEND BY PART NUMBER3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\PURCHASES FROM EU.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PURCHASES FROM EU.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\STOCK COST ADJUSTMENT REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>STOCK COST ADJUSTMENT REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\VENDOR PO AND RO SPEND.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VENDOR PO AND RO SPEND3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ACCOUNTS\YOY SALES.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YOY SALES.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ADMIN\ANNUAL FIRE EXTIGUISHER HALON REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ANNUAL FIRE EXTIGUISHER HALON REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ADMIN\RWW LOCATION CHANGE SQL\RWW LOCATION CHANGE SQL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RWW LOCATION CHANGE SQL3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 ADMIN\SIGNATURE SETUP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SIGNATURE SETUP3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 COMMISSION\AGENT COMMISSIONS REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AGENT COMMISSIONS REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 COMMISSION\BROKERED COMMISSION REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BROKERED COMMISSION REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 COMMISSION\BROKERED EXCHANGE REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BROKERED EXCHANGE REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 COMMISSION\SALES COMMISSION REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES COMMISSION REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\HAZARDOUS PART REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HAZARDOUS PART REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HISTORICAL AND CURRENT STOCK %28LINKED TO XTRA AEROSPACE%293.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\HISTORICAL AND CURRENT STOCK.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HISTORICAL AND CURRENT STOCK3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\OPEN RECEIVING REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OPEN RECEIVING REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\SHELF LIFE REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SHELF LIFE REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\STOCK AVAILABLE BY AIRCRAFT TYPE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>STOCK AVAILABLE BY AIRCRAFT TYPE3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\STOCK CHECK REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>STOCK CHECK REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\STOCK INVENTORY REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>STOCK INVENTORY REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 INVENTORY\TRANSACTION HISTORY FOR ALL PARTS BY TAG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TRANSACTION HISTORY FOR ALL PARTS BY TAG3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\CORE DUE BACK TO VENDOR REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CORE DUE BACK TO VENDOR REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\DAILY STOCK PURCHASES REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DAILY STOCK PURCHASES REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\LATE PO REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LATE PO REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\MOQ RE-ORDER REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MOQ RE-ORDER REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\OPEN PO CORE RECHARGE REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OPEN PO CORE RECHARGE REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\OPEN PURCHASE ORDERS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OPEN PURCHASE ORDERS3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\PO RANKING REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PO RANKING REPORT3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\PO SUMMARY BY VENDOR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PO SUMMARY BY VENDOR3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\PURCHASE ORDERS BY VENDORS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PURCHASE ORDERS BY VENDORS3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PURCHASES AND EXCHANGE ANALYSIS REPORT BY PN3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\PURCHASING TOTAL VALUES BY EMPLOYEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PURCHASING TOTAL VALUES BY EMPLOYEE3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\RETURNS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RETURNS3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 PURCHASES\VENDOR QUOTES.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VENDOR QUOTES3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 QUOTES\CQTOSOYTD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CQTOSOYTD.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 QUOTES\CUSTOMER QUOTE TO SALES ANALYSIS BY EMPLOYEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CUSTOMER QUOTE TO SALES ANALYSIS BY EMPLOYEE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 QUOTES\NO QUOTES.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NO QUOTES.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 QUOTES\QUOTES TO SALES ORDERS RATIO REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QUOTES TO SALES ORDERS RATIO REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\OPEN REPAIR ORDER REPORT - MAIN ONE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OPEN REPAIR ORDER REPORT - MAIN ONE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\OPEN RO REPORT V2 %28WITH COSTS%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OPEN RO REPORT V2 %28WITH COSTS%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\REPAIR ORDER STOCK POSITION.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>REPAIR ORDER STOCK POSITION.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\REPAIR ORDERS BY VENDORS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>REPAIR ORDERS BY VENDORS.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\RO PIECE PARTS RESERVED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RO PIECE PARTS RESERVED.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\RO RANKING REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RO RANKING REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 REPAIRS\WARRANTY REPAIR REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WARRANTY REPAIR REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\AVERAGE SALES REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AVERAGE SALES REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\INVOICE BY CUSTOMER.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>INVOICE BY CUSTOMER.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\OPEN SALES ORDERS TO SHIP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OPEN SALES ORDERS TO SHIP.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\PARTS SSP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PARTS SSP.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\Purchase Orders by Vendors.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Purchase Orders by Vendors.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\REVENUE ANALYSIS REPORT BY GROUP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>REVENUE ANALYSIS REPORT BY GROUP.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\REVENUE BY SALES TYPE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>REVENUE BY SALES TYPE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALE ORDERS BY CUSTOMER AND GROUP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALE ORDERS BY CUSTOMER AND GROUP.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALE ORDERS BY CUSTOMER AND MFG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALE ORDERS BY CUSTOMER AND MFG.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALES AND EXCHANGE ANALYSIS BY CUSTOMER.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES AND EXCHANGE ANALYSIS BY CUSTOMER.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALES BY AIRCRAFT TYPE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES BY AIRCRAFT TYPE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALES BY CUSTOMER TYPE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES BY CUSTOMER TYPE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALES RANKING REPORT %28BY COUNTRY SHIPPED TO%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES RANKING REPORT %28BY COUNTRY SHIPPED TO%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALES RANKING REPORT %28BY COUNTRY%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES RANKING REPORT %28BY COUNTRY%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\SALES RANKING REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SALES RANKING REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\TOP PN PROFIT MARGIN FOR OUTRIGHT TRANSACTIONS ONLY.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TOP PN PROFIT MARGIN FOR OUTRIGHT TRANSACTIONS ONLY.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\TOP PN SALES FOR EXCHANGE TRANSACTIONS ONLY.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TOP PN SALES FOR EXCHANGE TRANSACTIONS ONLY.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\A2000 SALES\TOP PN SALES FOR OUTRIGHT TRANSACTIONS ONLY.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TOP PN SALES FOR OUTRIGHT TRANSACTIONS ONLY.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\104.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>104.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\222.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>222.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\266.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>266.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\272.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>272.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\273.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>273.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\28.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>28.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\30.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>30.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\31.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>31.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\32.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>32.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\320.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>320.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\323.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>323.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\324.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>324.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\341.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>341.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\422.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>422.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Emgr\Reports\423.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>423.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\IntrastatByAccountCompany.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IntrastatByAccountCompany.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Murali_Revenue_By_Sales_Type_By_Acct_Company.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Murali_Revenue_By_Sales_Type_By_Acct_Company.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\PER CUSTOMER OPEN CORE REPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PER CUSTOMER OPEN CORE REPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\PER CUSTOMER OPEN CORE REPORT_Murali_Backup25Oct2022.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PER CUSTOMER OPEN CORE REPORT_Murali_Backup25Oct2022.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum CONSIGNMENT_ Sales_INCLUDING_NONSTOCK_MURALI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum CONSIGNMENT_ Sales_INCLUDING_NONSTOCK_MURALI.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum CONSIGNMENT_ Sales_MURALI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum CONSIGNMENT_ Sales_MURALI.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Consignor Inventory_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Consignor Inventory_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Intrastat Report_MURALI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Intrastat Report_MURALI.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Open Customer Core Report_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Open Customer Core Report_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Open Purchase Orders Report_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Open Purchase Orders Report_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Open Repair Orders Report_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Open Repair Orders Report_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Outstanding Core Repair 2012 Report_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Outstanding Core Repair 2012 Report_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Per Customer Open Core _Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Per Customer Open Core _Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Purchase Day Book_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Purchase Day Book_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Sales Report Per Customer_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Sales Report Per Customer_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Quantum Sales Report_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Quantum Sales Report_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\Murali Reports\Temp Quantum Purchase Day Book_Murali.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Temp Quantum Purchase Day Book_Murali.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,12 @@
+The excel spreadsheet must be in the below format.
+
+1)	The spreadsheet must be called ‘Part Number List’ and must be a .xlsx file
+2)	It must be located in the following folder: \\AERO-SPARES-APP\A2K_Shared\Quantum\Crystal Reports\Crystal Reports\A2000 EXCEL TO QUANTUM COMPARISON
+3)	It must have only one tab called ‘Sheet1’
+4)	It must be as clean as possible and not have any filters, cell colours, formulas etc.
+5)	Column 1, Row 1 must be ‘PN’
+6)	Column 2, Row 1 must be ‘DESC’
+7)	Make sure the spreadsheet is all formatted as ‘TEXT’
+8)	Make sure the spreadsheet is closed and not open by any users when running the report.
+
+This report is quite Data demanding, it may take up to around 1 minutes to refresh per 1000 line spreadsheet
